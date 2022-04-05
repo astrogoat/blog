@@ -1,13 +1,25 @@
 <?php
 
+use Astrogoat\Blog\Http\Controllers\ArticleController;
+use Astrogoat\Blog\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
     'as' => 'blog.article.',
-    'prefix' => 'blog/articles'
+    'prefix' => 'blog/articles/'
 ], function () {
-    Route::get('/', [\Astrogoat\Blog\Http\Controllers\ArticleController::class, 'index'])->name('index');
-    Route::get('/create', [\Astrogoat\Blog\Http\Controllers\ArticleController::class, 'create'])->name('create');
-    Route::get('/{articles}/edit', [\Astrogoat\Blog\Http\Controllers\ArticleController::class, 'edit'])->name('edit');
-    Route::get('/{articles}/editor/{editor_view?}', [\Blog\Locations\Http\Controllers\ArticleController::class, 'editor'])->name('editor');
+    Route::get('/', [ArticleController::class, 'index'])->name('index');
+    Route::get('/create', [ArticleController::class, 'create'])->name('create');
+    Route::get('/{article}/edit', [ArticleController::class, 'edit'])->name('edit');
+    Route::get('/{article}/editor/{editor_view?}', [ArticleController::class, 'editor'])->name('editor');
+});
+
+Route::group([
+    'as' => 'blog.category.',
+    'prefix' => 'blog/categories/'
+], function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('index');
+    Route::get('/create', [CategoryController::class, 'create'])->name('create');
+    Route::get('/{category}/edit', [CategoryController::class, 'edit'])->name('edit');
+    Route::get('/{category}/editor/{editor_view?}', [CategoryController::class, 'editor'])->name('editor');
 });

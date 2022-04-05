@@ -11,7 +11,7 @@ use Helix\Lego\Models\Traits\HasSections;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class BlogArticle extends LegoModel implements Sectionable, Metafieldable
+class Article extends LegoModel implements Sectionable, Metafieldable
 {
     use HasSections;
     use HasSlug;
@@ -24,20 +24,10 @@ class BlogArticle extends LegoModel implements Sectionable, Metafieldable
         return Icon::EYE;
     }
 
-    public static function getStoreKeyName(): string
-    {
-        return 'name';
-    }
-
-    public static function getAddressKeyName(): string
-    {
-        return 'address';
-    }
-
     public function editorShowViewRoute(string $layout = null): string
     {
-        return route('lego.locations.editor', [
-            'location' => $this,
+        return route('lego.blog.article.editor', [
+            'article' => $this,
             'editor_view' => 'show',
             'layout' => $layout,
         ]);
@@ -45,7 +35,7 @@ class BlogArticle extends LegoModel implements Sectionable, Metafieldable
 
     public static function getDisplayKeyName(): string
     {
-        return 'name';
+        return 'title';
     }
 
     public function getSlugOptions(): SlugOptions

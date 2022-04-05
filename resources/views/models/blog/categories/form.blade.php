@@ -4,52 +4,34 @@
     <x-fab::layouts.main-with-aside>
     <x-fab::layouts.panel>
         <x-fab::forms.input
-            label="Article title"
-            wire:model="article.title"
+            label="Category name"
+            wire:model="category.name"
         />
 
         <x-fab::forms.input
-            wire:model="article.slug"
+            wire:model="category.slug"
             label="URL and handle (slug)"
-            addon="{{ url('') . Route::getRoutes()->getByName('blog.article.show')->getPrefix() . '/' }}"
-            help="The URL where this article can be viewed. Changing this will break any existing links users may have bookmarked."
-            :disabled="! $article->exists"
+            addon="{{ url('') . Route::getRoutes()->getByName('blog.category.show')->getPrefix() . '/' }}"
+            help="The URL where this category can be viewed. Changing this will break any existing links users may have bookmarked."
+            :disabled="! $category->exists"
+        />
+
+        <x-fab::forms.editor
+            wire:model="category.description"
+            label="Description"
+            help="Use this field to format the category description"
+
         />
 
     </x-fab::layouts.panel>
 
-        @include('lego::metafields.define', ['metafieldable' => $article])
-
-    <x-fab::layouts.panel>
-        <x-fab::forms.input
-            label="Author"
-            wire:model="article.author"
-            help="Only numbers. For user to be able to click a phone number on their device."
-        />
-
-    </x-fab::layouts.panel>
-
-        <x-fab::layouts.panel>
-
-        <x-fab::forms.select
-            wire:model="article.category"
-            label="Category"
-            help="Choose a category for this article."
-        >
-            <option disabled>-- Select category</option>
-            <option value="">New category</option>
-            @foreach($this->categories() as $id => $category)
-                <option value="{{ $id }}">{{ $category }}</option>
-            @endforeach
-        </x-fab::forms.select>
-
-        </x-fab::layouts.panel>
+        @include('lego::metafields.define', ['metafieldable' => $category])
 
     <x-slot name="aside">
-        @if($article->exists)
+        @if($category->exists)
             <x-fab::elements.button
                 type="link"
-                :url="Route::getRoutes()->getByName('blog.article.show')->getPrefix() . '/' . $article->slug"
+                :url="Route::getRoutes()->getByName('blog.category.show')->getPrefix() . '/' . $category->slug"
                 target="_blank"
                 class="mb-4 mr-2"
             >
@@ -63,7 +45,7 @@
 
             <x-fab::elements.button
                 type="link"
-                :url="route('lego.blog.article.editor', $article)"
+                :url="route('lego.blog.category.editor', $category)"
                 class="mb-4"
             >
                 <x-fab::elements.icon
@@ -77,7 +59,7 @@
 
             <x-fab::layouts.panel heading="Structure" class="mb-4">
                 <x-fab::forms.select
-                    wire:model="article.layout"
+                    wire:model="category.layout"
                     label="Layout"
                     help="The base layout for the page."
                 >
@@ -89,7 +71,7 @@
                 </x-fab::forms.select>
 
                 <x-fab::forms.select
-                    wire:model="article.footer_id"
+                    wire:model="category.footer_id"
                     label="Footer"
                 >
                     <option value="">No footer</option>
@@ -99,7 +81,7 @@
                 </x-fab::forms.select>
             </x-fab::layouts.panel>
 
-            @if($article->exists)
+            @if($category->exists)
                 <x-fab::layouts.panel>
                     <x-fab::elements.button
                         wire:click="delete"
@@ -110,7 +92,7 @@
                             type="solid"
                             class="-ml-1 mr-2 h-5 w-5 text-red-500"
                         />
-                        Delete Article
+                        Delete Category
                     </x-fab::elements.button>
                 </x-fab::layouts.panel>
                 @endif

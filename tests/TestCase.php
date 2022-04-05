@@ -29,7 +29,7 @@ class TestCase extends Orchestra
         config()->set('database.default', 'testing');
 
         /*
-        $migration = include __DIR__.'/../database/migrations/create_blog_table.php';
+        $migration = include __DIR__.'/../database/migrations/create_blog_article_table.php';
         $migration->up();
         */
     }

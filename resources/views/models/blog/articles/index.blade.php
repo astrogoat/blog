@@ -6,7 +6,7 @@
 
 @section('content')
     <x-fab::layouts.page
-        title="Articles"
+        title="Blog Articles"
         :breadcrumbs="[
             ['title' => 'Home', 'url' => '/admin'],
             ['title' => 'Blog Articles'],
@@ -29,20 +29,20 @@
             @foreach($articles as $article)
                 <x-fab::lists.table.row :odd="$loop->odd">
                     <x-fab::lists.table.column full primary>
-                        <a href="{{ route('lego.blog.articles.edit', $article) }}">{{ $article->title }}</a>
+                        <a href="{{ route('lego.blog.article.edit', $article) }}">{{ $article->title }}</a>
                     </x-fab::lists.table.column>
                     <x-fab::lists.table.column full primary>
-                        <a href="{{ route('lego.blog.articles.edit', $article) }}">{{ $article->author }}</a>
+                        <a href="{{ route('lego.blog.article.edit', $article) }}">{{ $article->author }}</a>
                     </x-fab::lists.table.column>
                     <x-fab::lists.table.column full primary>
-                        <a href="{{ route('lego.blog.articles.edit', $article) }}">{{ $article->category }}</a>
+                        <a href="{{ route('lego.blog.article.edit', $article) }}">{{ $article->category }}</a>
                     </x-fab::lists.table.column>
                     <x-fab::lists.table.column align="right">{{ $article->updated_at->toFormattedDateString() }}</x-fab::lists.table.column>
                     <x-fab::lists.table.column align="right" slim>
-                        <a href="{{ route('lego.blog.articles.edit', $article) }}">Edit</a>
+                        <a href="{{ route('lego.blog.article.edit', $article) }}">Edit</a>
                     </x-fab::lists.table.column>
                     <x-fab::lists.table.column align="right">
-                        <a href="{{ route('lego.blog.articles.editor', $article) }}">Customize</a>
+                        <a href="{{ route('lego.blog.article.editor', $article) }}">Customize</a>
                     </x-fab::lists.table.column>
                 </x-fab::lists.table.row>
             @endforeach

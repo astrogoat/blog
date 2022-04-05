@@ -16,6 +16,6 @@
         x-on:keydown.meta.s.window.prevent="$wire.call('save')" {{-- For Mac --}}
         x-on:keydown.ctrl.s.window.prevent="$wire.call('save')" {{-- For PC  --}}
     >
-        <livewire:astrogoat.blog.article-form :location="$article"/>
+        <livewire:astrogoat.blog.articles-form :article="$article"/>
     </x-fab::layouts.page>
 @endsection

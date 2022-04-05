@@ -2,7 +2,8 @@
 
 namespace Astrogoat\Blog\Http\Livewire\Models;
 
-use Astrogoat\Blog\Models\BlogArticle;
+use Astrogoat\Blog\Models\Article;
+use Astrogoat\Blog\Models\Category;
 use Helix\Lego\Http\Livewire\Models\Form;
 use Helix\Lego\Models\Footer;
 use Helix\Lego\Models\Model;
@@ -11,18 +12,17 @@ use Illuminate\Support\Str;
 
 class ArticleForm extends Form
 {
-    public BlogArticle $article;
+    public Article $article;
 
     public function rules()
     {
         return [
             'article.title' => 'required',
             'article.author' => 'required',
-            'article.image' => 'nullable',
             'article.category' => 'nullable',
-            'location.slug' => [new SlugRule($this->article)],
-            'location.layout' => 'nullable',
-            'location.footer_id' => 'nullable',
+            'article.slug' => [new SlugRule($this->article)],
+            'article.layout' => 'nullable',
+            'article.footer_id' => 'nullable',
         ];
     }
 
@@ -69,5 +69,9 @@ class ArticleForm extends Form
     public function footers()
     {
         return Footer::all()->pluck('title', 'id');
+    }
+
+    public function categories() {
+        return Category::all()->pluck('name', 'id');
     }
 }

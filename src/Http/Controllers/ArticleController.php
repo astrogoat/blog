@@ -2,19 +2,19 @@
 
 namespace Astrogoat\Blog\Http\Controllers;
 
-use Astrogoat\Blog\Models\BlogArticle;
+use Astrogoat\Blog\Models\Article;
 use Illuminate\Routing\Controller;
 
 class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = BlogArticle::paginate(20);
+        $articles = Article::paginate(20);
 
         return view('blog::models.blog.articles.index', compact('articles'));
     }
 
-    public function show(BlogArticle $article)
+    public function show(Article $article)
     {
         $article->load('sections');
 
@@ -26,12 +26,12 @@ class ArticleController extends Controller
         return view('blog::models.blog.articles.create');
     }
 
-    public function edit(BlogArticle $article)
+    public function edit(Article $article)
     {
         return view('blog::models.blog.articles.edit', compact('article'));
     }
 
-    public function editor(BlogArticle $article, $editorView = 'editor')
+    public function editor(Article $article, $editorView = 'editor')
     {
         $article->load('sections');
 
