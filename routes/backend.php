@@ -2,7 +2,15 @@
 
 use Astrogoat\Blog\Http\Controllers\ArticleController;
 use Astrogoat\Blog\Http\Controllers\CategoryController;
+use Astrogoat\Blog\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
+
+Route::group([
+    'as' => 'blog.',
+    'prefix' => 'blog/'
+], function () {
+    Route::get('/', [BlogController::class, 'index'])->name('index');
+});
 
 Route::group([
     'as' => 'blog.article.',
