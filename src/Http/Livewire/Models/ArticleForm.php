@@ -71,7 +71,8 @@ class ArticleForm extends Form
         return Footer::all()->pluck('title', 'id');
     }
 
-    public function categories() {
+    public function categories()
+    {
         return Category::all()->pluck('name', 'id');
     }
 }
