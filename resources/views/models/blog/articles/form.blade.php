@@ -32,7 +32,7 @@
         <x-fab::layouts.panel>
 
         <x-fab::forms.select
-            wire:model="article.category"
+            wire:model="article.category_id"
             label="Category"
             help="Choose a category for this article."
         >
