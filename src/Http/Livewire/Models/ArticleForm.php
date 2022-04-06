@@ -19,7 +19,7 @@ class ArticleForm extends Form
         return [
             'article.title' => 'required',
             'article.author' => 'required',
-            'article.category' => 'nullable',
+            'article.category_id' => 'nullable',
             'article.slug' => [new SlugRule($this->article)],
             'article.layout' => 'nullable',
             'article.footer_id' => 'nullable',
