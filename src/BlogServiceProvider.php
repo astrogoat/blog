@@ -30,7 +30,7 @@ class BlogServiceProvider extends PackageServiceProvider
             ->menu(function (Menu $menu) {
                 $menu->addToSection(
                     Menu::MAIN_SECTIONS['PRIMARY'],
-                    Link::to(route('lego.blog.category.index'), 'Blog')
+                    Link::to(route('lego.blog.index'), 'Blog')
                         ->after('Pages')
                         ->icon(Icon::LOCATION_MARKER)
                 );
