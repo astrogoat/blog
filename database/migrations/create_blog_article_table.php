@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->unsignedBigInteger('category')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->string('slug');
             $table->string('layout')->nullable();
             $table->unsignedInteger('footer_id')->nullable();
