@@ -27,7 +27,7 @@ class Category extends LegoModel implements Sectionable, Metafieldable
     public function editorShowViewRoute(string $layout = null): string
     {
         return route('lego.blog.category.editor', [
-            'article' => $this,
+            'category' => $this,
             'editor_view' => 'show',
             'layout' => $layout,
         ]);
