@@ -9,7 +9,8 @@
         title="{{ $article->title }}"
         :breadcrumbs="[
             ['title' => 'Home', 'url' => '/admin'],
-            ['title' => 'Blog', 'url' => route('lego.blog.article.index')],
+            ['title' => 'Blog', 'url' => route('lego.blog.index')],
+            ['title' => 'Articles', 'url' => route('lego.blog.article.index')],
             ['title' => $article->title],
         ]"
         x-data=""

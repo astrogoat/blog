@@ -9,6 +9,7 @@
         title="Blog Categories"
         :breadcrumbs="[
             ['title' => 'Home', 'url' => '/admin'],
+            ['title' => 'Blog', 'url' => route('lego.blog.index')],
             ['title' => 'Blog Categories'],
         ]"
     >
