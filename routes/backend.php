@@ -1,7 +1,7 @@
 <?php
 
-use Astrogoat\Blog\Http\Controllers\ArticleController;
-use Astrogoat\Blog\Http\Controllers\CategoryController;
+use Astrogoat\Blog\Http\Controllers\ArticlesController;
+use Astrogoat\Blog\Http\Controllers\CategoriesController;
 use Astrogoat\Blog\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,24 +10,26 @@ Route::group([
     'prefix' => 'blog/'
 ], function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');
-});
 
-Route::group([
-    'as' => 'blog.article.',
-    'prefix' => 'blog/articles/'
-], function () {
-    Route::get('/', [ArticleController::class, 'index'])->name('index');
-    Route::get('/create', [ArticleController::class, 'create'])->name('create');
-    Route::get('/{article}/edit', [ArticleController::class, 'edit'])->name('edit');
-    Route::get('/{article}/editor/{editor_view?}', [ArticleController::class, 'editor'])->name('editor');
-});
+    Route::group([
+        'as' => 'articles.',
+        'prefix' => 'articles/'
+    ], function () {
+        Route::get('/', [ArticlesController::class, 'index'])->name('index');
+        Route::get('/create', [ArticlesController::class, 'create'])->name('create');
+        Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('edit');
+        Route::get('/{article}/editor/{editor_view?}', [ArticlesController::class, 'editor'])->name('editor');
+    });
 
-Route::group([
-    'as' => 'blog.category.',
-    'prefix' => 'blog/categories/'
-], function () {
-    Route::get('/', [CategoryController::class, 'index'])->name('index');
-    Route::get('/create', [CategoryController::class, 'create'])->name('create');
-    Route::get('/{category}/edit', [CategoryController::class, 'edit'])->name('edit');
-    Route::get('/{category}/editor/{editor_view?}', [CategoryController::class, 'editor'])->name('editor');
+    Route::group([
+        'as' => 'categories.',
+        'prefix' => 'categories/'
+    ], function () {
+        Route::get('/', [CategoriesController::class, 'index'])->name('index');
+        Route::get('/create', [CategoriesController::class, 'create'])->name('create');
+        Route::get('/{category}/edit', [CategoriesController::class, 'edit'])->name('edit');
+        Route::get('/{category}/editor/{editor_view?}', [CategoriesController::class, 'editor'])->name('editor');
+    });
+
+
 });

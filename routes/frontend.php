@@ -1,21 +1,27 @@
 <?php
 
-use Astrogoat\Blog\Http\Controllers\ArticleController;
-use Astrogoat\Blog\Http\Controllers\CategoryController;
+use Astrogoat\Blog\Http\Controllers\ArticlesController;
+use Astrogoat\Blog\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
-    'as' => 'blog.article.',
-    'prefix' => 'blog/article/',
-//    'middleware' => ['enabled:Astrogoat\Blog\Settings\BlogSettings']
+    'as' => 'blog.',
+    'prefix' => 'blog/',
+    'middleware' => ['enabled:Astrogoat\Blog\Settings\BlogSettings']
 ], function () {
-    Route::get('{article:slug}', [ArticleController::class, 'show'])->name('show');
-});
 
-Route::group([
-    'as' => 'blog.category.',
-    'prefix' => 'blog/category/',
-//    'middleware' => ['enabled:Astrogoat\Blog\Settings\BlogSettings']
-], function () {
-    Route::get('{category:slug}', [CategoryController::class, 'show'])->name('show');
+    Route::group([
+        'as' => 'articles.',
+        'prefix' => 'articles/',
+    ], function () {
+        Route::get('{article:slug}', [ArticlesController::class, 'show'])->name('show');
+    });
+
+    Route::group([
+        'as' => 'categories.',
+        'prefix' => 'categories/',
+    ], function () {
+        Route::get('{category:slug}', [CategoriesController::class, 'show'])->name('show');
+    });
+
 });
