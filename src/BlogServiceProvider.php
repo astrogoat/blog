@@ -6,15 +6,15 @@ use Astrogoat\Blog\Http\Livewire\Models\ArticleForm;
 use Astrogoat\Blog\Http\Livewire\Models\CategoryForm;
 use Astrogoat\Blog\Models\Article;
 use Astrogoat\Blog\Models\Category;
+use Astrogoat\Blog\Settings\BlogSettings;
 use Helix\Fabrick\Icon;
 use Helix\Lego\Apps\App;
 use Helix\Lego\LegoManager;
 use Helix\Lego\Menus\Lego\Link;
 use Helix\Lego\Menus\Menu;
+use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Astrogoat\Blog\Settings\BlogSettings;
-use Livewire\Livewire;
 
 class BlogServiceProvider extends PackageServiceProvider
 {
@@ -68,6 +68,5 @@ class BlogServiceProvider extends PackageServiceProvider
 
         Livewire::component('astrogoat.blog.articles-form', ArticleForm::class);
         Livewire::component('astrogoat.blog.categories-form', CategoryForm::class);
-
     }
 }

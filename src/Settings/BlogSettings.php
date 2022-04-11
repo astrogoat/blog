@@ -2,8 +2,8 @@
 
 namespace Astrogoat\Blog\Settings;
 
-use Helix\Lego\Settings\AppSettings;
 use Astrogoat\Blog\Actions\BlogAction;
+use Helix\Lego\Settings\AppSettings;
 
 class BlogSettings extends AppSettings
 {
