@@ -3,7 +3,10 @@
 namespace Astrogoat\Blog\Models;
 
 use Helix\Fabrick\Icon;
+use Helix\Lego\Models\Contracts\Indexable;
 use Helix\Lego\Models\Contracts\Metafieldable;
+use Helix\Lego\Models\Contracts\Publishable;
+use Helix\Lego\Models\Contracts\Searchable;
 use Helix\Lego\Models\Contracts\Sectionable;
 use Helix\Lego\Models\Model as LegoModel;
 use Helix\Lego\Models\Traits\HasMetafields;
@@ -11,7 +14,7 @@ use Helix\Lego\Models\Traits\HasSections;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Article extends LegoModel implements Sectionable, Metafieldable
+class Article extends LegoModel implements Sectionable, Indexable, Searchable, Metafieldable
 {
     use HasSections;
     use HasSlug;
@@ -21,12 +24,12 @@ class Article extends LegoModel implements Sectionable, Metafieldable
 
     public static function icon(): string
     {
-        return Icon::EYE;
+        return Icon::DOCUMENT_TEXT;
     }
 
     public function editorShowViewRoute(string $layout = null): string
     {
-        return route('lego.blog.article.editor', [
+        return route('lego.blog.articles.editor', [
             'article' => $this,
             'editor_view' => 'show',
             'layout' => $layout,
@@ -44,5 +47,70 @@ class Article extends LegoModel implements Sectionable, Metafieldable
             ->generateSlugsFrom($this->getDisplayKeyName())
             ->saveSlugsTo('slug')
             ->doNotGenerateSlugsOnUpdate();
+    }
+
+    public function shouldIndex(): bool
+    {
+        return $this->indexable;
+    }
+
+    public function getIndexedRoute(): string
+    {
+        return $this->getPublishedRoute();
+    }
+
+    public function getPublishedAtKey(): string
+    {
+        return 'published_at';
+    }
+
+    public function isVisible(): bool
+    {
+        // TODO: Implement isVisible() method.
+    }
+
+    public function hasBeenPublished(): bool
+    {
+        // TODO: Implement hasBeenPublished() method.
+    }
+
+    public function publishedState(): string
+    {
+        // TODO: Implement publishedState() method.
+    }
+
+    public function getPublishedRoute(): string
+    {
+        return route('lego.blog.articles.show', $this);
+    }
+
+    public static function searchableIcon(): string
+    {
+        return static::icon();
+    }
+
+    public static function searchableIndexRoute(): string
+    {
+        return route('lego.blog.articles.index');
+    }
+
+    public function scopeGlobalSearch($query, $value)
+    {
+        return $query->where('title', 'LIKE', "%{$value}%");
+    }
+
+    public function searchableName(): string
+    {
+        return $this->title;
+    }
+
+    public function searchableDescription(): string
+    {
+        return $this->author ?? '';
+    }
+
+    public function searchableRoute(): string
+    {
+        return route('lego.blog.articles.edit', $this);
     }
 }
