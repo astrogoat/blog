@@ -5,7 +5,7 @@ namespace Astrogoat\Blog\Http\Controllers;
 use Astrogoat\Blog\Models\Article;
 use Illuminate\Routing\Controller;
 
-class ArticleController extends Controller
+class ArticlesController extends Controller
 {
     public function index()
     {
