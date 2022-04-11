@@ -27,7 +27,7 @@ class CategoryForm extends Form
     public function saved()
     {
         if ($this->category->wasRecentlyCreated) {
-            return redirect()->to(route('lego.blog.category.edit', $this->category));
+            return redirect()->to(route('lego.blog.categories.edit', $this->category));
         }
     }
 
@@ -51,7 +51,7 @@ class CategoryForm extends Form
 
     public function deleted()
     {
-        return redirect()->to(route('lego.blog.category.index'));
+        return redirect()->to(route('lego.blog.categories.index'));
     }
 
     public function render()

@@ -1,5 +1,38 @@
 <div x-data>
 
+    <x-slot name="actions">
+        @if($article->exists)
+            <x-fab::elements.button
+                type="link"
+                :url="url('') . '/' . Route::getRoutes()->getByName('blog.articles.show')->getPrefix() . '/' . $article->slug"
+                target="_blank"
+                class="mb-4 mr-2"
+            >
+                <x-fab::elements.icon
+                    icon="eye"
+                    type="solid"
+                    class="-ml-1 mr-2 h-5 w-5"
+                />
+                View
+            </x-fab::elements.button>
+
+            <x-fab::elements.button
+                type="link"
+                :url="route('lego.blog.articles.editor', $article)"
+                class="mb-4"
+            >
+                <x-fab::elements.icon
+                    icon="adjustments"
+                    type="solid"
+                    class="-ml-1 mr-2 h-5 w-5"
+                />
+                Customize
+            </x-fab::elements.button>
+        @endif
+
+        @include('blog::models._includes.published-state-select')
+    </x-slot>
+
     <x-fab::layouts.main-with-aside>
         <x-fab::layouts.panel>
             <x-fab::forms.input
@@ -45,36 +78,9 @@
         </x-fab::layouts.panel>
 
         <x-slot name="aside">
-            @if($article->exists)
-                <x-fab::elements.button
-                    type="link"
-                    :url="url('') . '/' . Route::getRoutes()->getByName('blog.articles.show')->getPrefix() . '/' . $article->slug"
-                    target="_blank"
-                    class="mb-4 mr-2"
-                >
-                    <x-fab::elements.icon
-                        icon="eye"
-                        type="solid"
-                        class="-ml-1 mr-2 h-5 w-5"
-                    />
-                    View
-                </x-fab::elements.button>
-
-                <x-fab::elements.button
-                    type="link"
-                    :url="route('lego.blog.articles.editor', $article)"
-                    class="mb-4"
-                >
-                    <x-fab::elements.icon
-                        icon="adjustments"
-                        type="solid"
-                        class="-ml-1 mr-2 h-5 w-5"
-                    />
-                    Customize
-                </x-fab::elements.button>
-            @endif
 
             <x-fab::layouts.panel heading="Structure" class="mb-4">
+
                 <x-fab::forms.select
                     wire:model="article.layout"
                     label="Layout"

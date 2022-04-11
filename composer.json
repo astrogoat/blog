@@ -19,6 +19,10 @@
         {
             "type": "composer",
             "url": "https://packages.hlx.dev"
+        },
+        {
+            "type": "path",
+            "url": "/Users/peterperez/Documents/WebProjects/strata"
         }
     ],
     "require": {

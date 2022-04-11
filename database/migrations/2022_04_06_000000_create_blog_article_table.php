@@ -16,9 +16,8 @@ return new class extends Migration
             $table->string('slug');
             $table->string('layout')->nullable();
             $table->unsignedInteger('footer_id')->nullable();
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
-
-//            $table->foreign('category')->references('id')->on('blog_categories')->onDelete('cascade');
             $table->foreign('footer_id')->references('id')->on('footers');
         });
     }

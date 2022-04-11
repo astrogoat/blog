@@ -5,6 +5,7 @@ namespace Astrogoat\Blog\Http\Livewire\Models;
 use Astrogoat\Blog\Models\Article;
 use Astrogoat\Blog\Models\Category;
 use Helix\Lego\Http\Livewire\Models\Form;
+use Helix\Lego\Models\Contracts\Publishable;
 use Helix\Lego\Models\Footer;
 use Helix\Lego\Models\Model;
 use Helix\Lego\Rules\SlugRule;
@@ -23,13 +24,14 @@ class ArticleForm extends Form
             'article.slug' => [new SlugRule($this->article)],
             'article.layout' => 'nullable',
             'article.footer_id' => 'nullable',
+            'article.published_at' => 'nullable',
         ];
     }
 
     public function saved()
     {
         if ($this->article->wasRecentlyCreated) {
-            return redirect()->to(route('lego.blog.article.edit', $this->article));
+            return redirect()->to(route('lego.blog.articles.edit', $this->article));
         }
     }
 
@@ -53,7 +55,7 @@ class ArticleForm extends Form
 
     public function deleted()
     {
-        return redirect()->to(route('lego.blog.article.index'));
+        return redirect()->to(route('lego.blog.articles.index'));
     }
 
     public function render()
@@ -74,5 +76,10 @@ class ArticleForm extends Form
     public function categories()
     {
         return Category::all()->pluck('name', 'id');
+    }
+
+    public function getPublishableModel() : Publishable
+    {
+        return $this->article;
     }
 }

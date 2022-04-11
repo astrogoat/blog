@@ -9,13 +9,15 @@ use Helix\Lego\Models\Contracts\Publishable;
 use Helix\Lego\Models\Contracts\Searchable;
 use Helix\Lego\Models\Contracts\Sectionable;
 use Helix\Lego\Models\Model as LegoModel;
+use Helix\Lego\Models\Traits\CanBePublished;
 use Helix\Lego\Models\Traits\HasMetafields;
 use Helix\Lego\Models\Traits\HasSections;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Article extends LegoModel implements Sectionable, Indexable, Searchable, Metafieldable
+class Article extends LegoModel implements Sectionable, Indexable, Publishable, Searchable, Metafieldable
 {
+    use CanBePublished;
     use HasSections;
     use HasSlug;
     use HasMetafields;
@@ -59,30 +61,30 @@ class Article extends LegoModel implements Sectionable, Indexable, Searchable, M
         return $this->getPublishedRoute();
     }
 
-    public function getPublishedAtKey(): string
-    {
-        return 'published_at';
-    }
-
-    public function isVisible(): bool
-    {
-        // TODO: Implement isVisible() method.
-    }
-
-    public function hasBeenPublished(): bool
-    {
-        // TODO: Implement hasBeenPublished() method.
-    }
-
-    public function publishedState(): string
-    {
-        // TODO: Implement publishedState() method.
-    }
-
-    public function getPublishedRoute(): string
-    {
-        return route('lego.blog.articles.show', $this);
-    }
+//    public function getPublishedAtKey(): string
+//    {
+//        return 'published_at';
+//    }
+//
+//    public function isVisible(): bool
+//    {
+//        // TODO: Implement isVisible() method.
+//    }
+//
+//    public function hasBeenPublished(): bool
+//    {
+//        // TODO: Implement hasBeenPublished() method.
+//    }
+//
+//    public function publishedState(): string
+//    {
+//        // TODO: Implement publishedState() method.
+//    }
+//
+//    public function getPublishedRoute(): string
+//    {
+//        return route('blog.articles.show', $this);
+//    }
 
     public static function searchableIcon(): string
     {
@@ -112,5 +114,15 @@ class Article extends LegoModel implements Sectionable, Indexable, Searchable, M
     public function searchableRoute(): string
     {
         return route('lego.blog.articles.edit', $this);
+    }
+
+    public function getPublishedAtKey(): string
+    {
+        return 'published_at';
+    }
+
+    public function getPublishedRoute(): string
+    {
+        return route('blog.articles.show', $this);
     }
 }
