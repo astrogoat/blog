@@ -8,9 +8,9 @@
     <x-fab::layouts.page
         title="{{ $article->title }}"
         :breadcrumbs="[
-            ['title' => 'Home', 'url' => '/admin'],
+            ['title' => 'Home', 'url' => route('lego.dashboard')],
             ['title' => 'Blog', 'url' => route('lego.blog.index')],
-            ['title' => 'Articles', 'url' => route('lego.blog.article.index')],
+            ['title' => 'Articles', 'url' => route('lego.blog.articles.index')],
             ['title' => $article->title],
         ]"
         x-data=""

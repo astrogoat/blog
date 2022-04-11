@@ -8,9 +8,9 @@
     <x-fab::layouts.page
         title="New Category"
         :breadcrumbs="[
-            ['title' => 'Home', 'url' => '/admin'],
+            ['title' => 'Home', 'url' => route('lego.dashboard')],
             ['title' => 'Blog', 'url' => route('lego.blog.index')],
-            ['title' => 'Categories', 'url' => route('lego.blog.category.index')],
+            ['title' => 'Categories', 'url' => route('lego.blog.categories.index')],
             ['title' => 'New'],
         ]"
         x-data=""

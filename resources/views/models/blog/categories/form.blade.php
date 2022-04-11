@@ -1,61 +1,60 @@
-
 <div x-data>
 
     <x-fab::layouts.main-with-aside>
-    <x-fab::layouts.panel>
-        <x-fab::forms.input
-            label="Category name"
-            wire:model="category.name"
-        />
+        <x-fab::layouts.panel>
+            <x-fab::forms.input
+                label="Category name"
+                wire:model="category.name"
+            />
 
-        <x-fab::forms.input
-            wire:model="category.slug"
-            label="URL and handle (slug)"
-            addon="{{ url('') . Route::getRoutes()->getByName('blog.category.show')->getPrefix() . '/' }}"
-            help="The URL where this category can be viewed. Changing this will break any existing links users may have bookmarked."
-            :disabled="! $category->exists"
-        />
+            <x-fab::forms.input
+                wire:model="category.slug"
+                label="URL and handle (slug)"
+                addon="{{ url('') . '/' . Route::getRoutes()->getByName('blog.categories.show')->getPrefix() . '/' }}"
+                help="The URL where this category can be viewed. Changing this will break any existing links users may have bookmarked."
+                :disabled="! $category->exists"
+            />
 
-        <x-fab::forms.editor
-            wire:model="category.description"
-            label="Description"
-            help="Use this field to format the category description"
+            <x-fab::forms.editor
+                wire:model="category.description"
+                label="Description"
+                help="Use this field to format the category description"
 
-        />
+            />
 
-    </x-fab::layouts.panel>
+        </x-fab::layouts.panel>
 
         @include('lego::metafields.define', ['metafieldable' => $category])
 
-    <x-slot name="aside">
-        @if($category->exists)
-            <x-fab::elements.button
-                type="link"
-                :url="Route::getRoutes()->getByName('blog.category.show')->getPrefix() . '/' . $category->slug"
-                target="_blank"
-                class="mb-4 mr-2"
-            >
-                <x-fab::elements.icon
-                    icon="eye"
-                    type="solid"
-                    class="-ml-1 mr-2 h-5 w-5"
-                />
-                View
-            </x-fab::elements.button>
+        <x-slot name="aside">
+            @if($category->exists)
+                <x-fab::elements.button
+                    type="link"
+                    :url="url('') . '/' . Route::getRoutes()->getByName('blog.categories.show')->getPrefix() . '/' . $category->slug"
+                    target="_blank"
+                    class="mb-4 mr-2"
+                >
+                    <x-fab::elements.icon
+                        icon="eye"
+                        type="solid"
+                        class="-ml-1 mr-2 h-5 w-5"
+                    />
+                    View
+                </x-fab::elements.button>
 
-            <x-fab::elements.button
-                type="link"
-                :url="route('lego.blog.category.editor', $category)"
-                class="mb-4"
-            >
-                <x-fab::elements.icon
-                    icon="adjustments"
-                    type="solid"
-                    class="-ml-1 mr-2 h-5 w-5"
-                />
-                Customize
-            </x-fab::elements.button>
-        @endif
+                <x-fab::elements.button
+                    type="link"
+                    :url="route('lego.blog.categories.editor', $category)"
+                    class="mb-4"
+                >
+                    <x-fab::elements.icon
+                        icon="adjustments"
+                        type="solid"
+                        class="-ml-1 mr-2 h-5 w-5"
+                    />
+                    Customize
+                </x-fab::elements.button>
+            @endif
 
             <x-fab::layouts.panel heading="Structure" class="mb-4">
                 <x-fab::forms.select
@@ -95,10 +94,10 @@
                         Delete Category
                     </x-fab::elements.button>
                 </x-fab::layouts.panel>
-                @endif
-    </x-slot>
+            @endif
+        </x-slot>
 
-</x-fab::layouts.main-with-aside>
+    </x-fab::layouts.main-with-aside>
     @push('styles')
         <link href="{{ asset('vendor/blog/css/blog.css') }}" rel="stylesheet">
     @endpush
