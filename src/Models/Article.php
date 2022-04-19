@@ -5,7 +5,6 @@ namespace Astrogoat\Blog\Models;
 use Helix\Fabrick\Icon;
 use Helix\Lego\Models\Contracts\Indexable;
 use Helix\Lego\Models\Contracts\Metafieldable;
-use Helix\Lego\Models\Contracts\Publishable;
 use Helix\Lego\Models\Contracts\Searchable;
 use Helix\Lego\Models\Contracts\Sectionable;
 use Helix\Lego\Models\Model as LegoModel;
