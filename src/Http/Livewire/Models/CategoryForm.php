@@ -18,6 +18,7 @@ class CategoryForm extends Form
         return [
             'category.name' => 'required',
             'category.description' => 'nullable',
+            'category.indexable' => 'nullable',
             'category.slug' => [new SlugRule($this->category)],
             'category.layout' => 'nullable',
             'category.footer_id' => 'nullable',
