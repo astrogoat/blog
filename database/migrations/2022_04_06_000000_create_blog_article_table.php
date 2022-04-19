@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('layout')->nullable();
             $table->unsignedInteger('footer_id')->nullable();
-            $table->boolean('indexable')->default(0);
+            $table->boolean('indexable')->default(0)->change();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->foreign('footer_id')->references('id')->on('footers');
