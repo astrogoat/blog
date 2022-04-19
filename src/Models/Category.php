@@ -58,6 +58,11 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
         return $this->getPublishedRoute();
     }
 
+    public function getPublishedRoute(): string
+    {
+        return route('blog.categories.show', $this);
+    }
+
     public static function searchableIcon(): string
     {
         return static::icon();
