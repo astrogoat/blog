@@ -61,31 +61,6 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
         return $this->getPublishedRoute();
     }
 
-//    public function getPublishedAtKey(): string
-//    {
-//        return 'published_at';
-//    }
-//
-//    public function isVisible(): bool
-//    {
-//        // TODO: Implement isVisible() method.
-//    }
-//
-//    public function hasBeenPublished(): bool
-//    {
-//        // TODO: Implement hasBeenPublished() method.
-//    }
-//
-//    public function publishedState(): string
-//    {
-//        // TODO: Implement publishedState() method.
-//    }
-//
-//    public function getPublishedRoute(): string
-//    {
-//        return route('blog.articles.show', $this);
-//    }
-
     public static function searchableIcon(): string
     {
         return static::icon();

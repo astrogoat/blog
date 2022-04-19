@@ -30,7 +30,7 @@
             </x-fab::elements.button>
         @endif
 
-        @include('blog::models._includes.published-state-select')
+        @include('lego::models._includes.published-state-select')
     </x-slot>
 
     <x-fab::layouts.main-with-aside>

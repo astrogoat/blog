@@ -5,6 +5,7 @@ namespace Astrogoat\Blog\Http\Livewire\Models;
 use Astrogoat\Blog\Models\Article;
 use Astrogoat\Blog\Models\Category;
 use Helix\Lego\Http\Livewire\Models\Form;
+use Helix\Lego\Http\Livewire\Traits\CanBePublished;
 use Helix\Lego\Models\Contracts\Publishable;
 use Helix\Lego\Models\Footer;
 use Helix\Lego\Models\Model;
@@ -13,6 +14,8 @@ use Illuminate\Support\Str;
 
 class ArticleForm extends Form
 {
+    use CanBePublished;
+
     public Article $article;
 
     public function rules()
@@ -82,4 +85,5 @@ class ArticleForm extends Form
     {
         return $this->article;
     }
+
 }

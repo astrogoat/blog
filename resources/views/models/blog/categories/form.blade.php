@@ -1,5 +1,36 @@
 <div x-data>
 
+    <x-slot name="actions">
+        @if($category->exists)
+            <x-fab::elements.button
+                type="link"
+                :url="url('') . '/' . Route::getRoutes()->getByName('blog.categories.show')->getPrefix() . '/' . $category->slug"
+                target="_blank"
+                class="mb-4 mr-2"
+            >
+                <x-fab::elements.icon
+                    icon="eye"
+                    type="solid"
+                    class="-ml-1 mr-2 h-5 w-5"
+                />
+                View
+            </x-fab::elements.button>
+
+            <x-fab::elements.button
+                type="link"
+                :url="route('lego.blog.categories.editor', $category)"
+                class="mb-4"
+            >
+                <x-fab::elements.icon
+                    icon="adjustments"
+                    type="solid"
+                    class="-ml-1 mr-2 h-5 w-5"
+                />
+                Customize
+            </x-fab::elements.button>
+        @endif
+    </x-slot>
+
     <x-fab::layouts.main-with-aside>
         <x-fab::layouts.panel>
             <x-fab::forms.input
@@ -27,34 +58,6 @@
         @include('lego::metafields.define', ['metafieldable' => $category])
 
         <x-slot name="aside">
-            @if($category->exists)
-                <x-fab::elements.button
-                    type="link"
-                    :url="url('') . '/' . Route::getRoutes()->getByName('blog.categories.show')->getPrefix() . '/' . $category->slug"
-                    target="_blank"
-                    class="mb-4 mr-2"
-                >
-                    <x-fab::elements.icon
-                        icon="eye"
-                        type="solid"
-                        class="-ml-1 mr-2 h-5 w-5"
-                    />
-                    View
-                </x-fab::elements.button>
-
-                <x-fab::elements.button
-                    type="link"
-                    :url="route('lego.blog.categories.editor', $category)"
-                    class="mb-4"
-                >
-                    <x-fab::elements.icon
-                        icon="adjustments"
-                        type="solid"
-                        class="-ml-1 mr-2 h-5 w-5"
-                    />
-                    Customize
-                </x-fab::elements.button>
-            @endif
 
             <x-fab::layouts.panel heading="Structure" class="mb-4">
                 <x-fab::forms.select

@@ -19,15 +19,11 @@
         {
             "type": "composer",
             "url": "https://packages.hlx.dev"
-        },
-        {
-            "type": "path",
-            "url": "/Users/peterperez/Documents/WebProjects/strata"
         }
     ],
     "require": {
         "php": "^8.0",
-        "astrogoat/strata": "0.1.0",
+        "astrogoat/strata": "^0.1.0",
         "spatie/laravel-package-tools": "^1.4.3",
         "illuminate/contracts": "^8.37"
     },
