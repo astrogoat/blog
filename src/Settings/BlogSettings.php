@@ -1,11 +1,11 @@
 <?php
 
-namespace VendorName\Skeleton\Settings;
+namespace Astrogoat\Blog\Settings;
 
+use Astrogoat\Blog\Actions\BlogAction;
 use Helix\Lego\Settings\AppSettings;
-use VendorName\Skeleton\Actions\SkeletonAction;
 
-class SkeletonSettings extends AppSettings
+class BlogSettings extends AppSettings
 {
     // public string $url;
     // public string $access_token;
@@ -16,7 +16,7 @@ class SkeletonSettings extends AppSettings
     ];
 
     protected static array $actions = [
-        // SkeletonAction::class,
+        // BlogAction::class,
     ];
 
     // public static function encrypted(): array
@@ -26,6 +26,6 @@ class SkeletonSettings extends AppSettings
 
     public function description(): string
     {
-        return 'Interact with Skeleton.';
+        return 'Interact with Blog.';
     }
 }
