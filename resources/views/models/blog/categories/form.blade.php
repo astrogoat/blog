@@ -90,6 +90,17 @@
                 </x-fab::forms.select>
             </x-fab::layouts.panel>
 
+            <x-fab::layouts.panel class="mb-4">
+
+                <x-fab::forms.checkbox
+                    id="should_display_on_rail"
+                    label="Display in right side rail"
+                    wire:model="category.display_on_rail"
+                    help=""
+                />
+
+            </x-fab::layouts.panel>
+
             @if($category->exists)
                 <x-fab::layouts.panel>
                     <x-fab::elements.button

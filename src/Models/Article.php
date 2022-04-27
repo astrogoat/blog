@@ -43,6 +43,11 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
         return 'title';
     }
 
+    public static function getAuthorName(): string
+    {
+        return 'author';
+    }
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
