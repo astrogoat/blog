@@ -105,4 +105,9 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
     {
         return route('blog.articles.show', $this);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
