@@ -82,6 +82,11 @@ class ArticleForm extends Form
         return Category::all()->pluck('name', 'id');
     }
 
+    public function category()
+    {
+        return Category::where('id', $this->article->category_id)->first();
+    }
+
     public function getPublishableModel(): Publishable
     {
         return $this->article;

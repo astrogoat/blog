@@ -2,6 +2,7 @@
 
 namespace Astrogoat\Blog\Http\Livewire\Models;
 
+use Astrogoat\Blog\Models\Article;
 use Astrogoat\Blog\Models\Category;
 use Helix\Lego\Http\Livewire\Models\Form;
 use Helix\Lego\Models\Footer;
@@ -64,6 +65,11 @@ class CategoryForm extends Form
     public function getModel(): Model
     {
         return $this->category;
+    }
+
+    public function articles()
+    {
+        return Article::where('category_id', $this->category->id)->paginate(8);
     }
 
     public function footers()
