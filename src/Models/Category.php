@@ -95,6 +95,6 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
 
     public function articles()
     {
-        return $this->hasMany(Article::class, 'category_id', 'id');
+        return $this->hasMany(Article::class, 'category_id');
     }
 }

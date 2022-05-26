@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->foreign('footer_id')->references('id')->on('footers');
+            $table->foreign('category_id')->references('id')->on('blog_categories');
         });
     }
 
