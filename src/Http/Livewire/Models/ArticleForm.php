@@ -84,7 +84,7 @@ class ArticleForm extends Form
 
     public function category()
     {
-        return Category::where('id', $this->article->category_id)->first();
+        return $this->article->category;
     }
 
     public function getPublishableModel(): Publishable

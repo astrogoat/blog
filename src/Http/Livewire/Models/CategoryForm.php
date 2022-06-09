@@ -20,7 +20,6 @@ class CategoryForm extends Form
             'category.name' => 'required',
             'category.description' => 'nullable',
             'category.indexable' => 'nullable',
-            'category.display_on_rail' => 'nullable',
             'category.slug' => [new SlugRule($this->category)],
             'category.layout' => 'nullable',
             'category.footer_id' => 'nullable',
@@ -69,7 +68,7 @@ class CategoryForm extends Form
 
     public function articles()
     {
-        return Article::where('category_id', $this->category->id)->paginate(8);
+        return $this->category->articles()->paginate(8);
     }
 
     public function footers()

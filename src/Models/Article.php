@@ -43,7 +43,7 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
         return 'title';
     }
 
-    public static function getAuthorName(): string
+    public static function getAuthorKey(): string
     {
         return 'author';
     }

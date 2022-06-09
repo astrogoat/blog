@@ -25,7 +25,7 @@ class BrowseArticles extends Modal
         }
 
         $this->articles = Article::where(Article::getDisplayKeyName(), 'LIKE', "%{$query}%")
-            ->orWhere(Article::getAuthorName(), 'LIKE', "%{$query}%")
+            ->orWhere(Article::getAuthorKey(), 'LIKE', "%{$query}%")
             ->get();
     }
 

@@ -38,7 +38,7 @@ class ArticleValueObject extends BrickValueObject
 
     public function __toString()
     {
-        return '';
+        return $this->getValue() ?? '';
     }
 
     public function offsetExists($offset)
