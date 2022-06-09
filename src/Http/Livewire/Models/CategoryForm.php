@@ -2,7 +2,6 @@
 
 namespace Astrogoat\Blog\Http\Livewire\Models;
 
-use Astrogoat\Blog\Models\Article;
 use Astrogoat\Blog\Models\Category;
 use Helix\Lego\Http\Livewire\Models\Form;
 use Helix\Lego\Models\Footer;
