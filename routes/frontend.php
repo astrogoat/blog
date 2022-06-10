@@ -12,14 +12,13 @@ Route::group([
 
     Route::group([
         'as' => 'articles.',
-        'prefix' => 'articles/',
     ], function () {
         Route::get('{article:slug}', [ArticlesController::class, 'show'])->name('show');
     });
 
     Route::group([
         'as' => 'categories.',
-        'prefix' => 'categories/',
+        'prefix' => 'category/',
     ], function () {
         Route::get('{category:slug}', [CategoriesController::class, 'show'])->name('show');
     });
