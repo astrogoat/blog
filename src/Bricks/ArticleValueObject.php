@@ -25,9 +25,7 @@ class ArticleValueObject extends BrickValueObject
 
     public function getValue()
     {
-        return $this->value;
         $selectedArticle = \Astrogoat\Blog\Models\Article::find($this->value);
-
         return $selectedArticle != null ? $selectedArticle->title : '';
     }
 
