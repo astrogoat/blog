@@ -4,7 +4,7 @@
         @if($category->exists)
             <x-fab::elements.button
                 type="link"
-                :url="url('') . '/' . Route::getRoutes()->getByName('blog.categories.show')->getPrefix() . '/' . $category->slug"
+                :url="url(Route::getRoutes()->getByName('blog.categories.show')->getPrefix() . '/' . $category->slug)"
                 target="_blank"
                 class="mb-4 mr-2"
             >
