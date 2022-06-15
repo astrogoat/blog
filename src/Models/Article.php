@@ -43,6 +43,11 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
         return 'title';
     }
 
+    public static function getAuthorKey(): string
+    {
+        return 'author';
+    }
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
@@ -99,5 +104,10 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
     public function getPublishedRoute(): string
     {
         return route('blog.articles.show', $this);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

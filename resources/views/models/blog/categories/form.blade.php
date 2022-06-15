@@ -53,6 +53,13 @@
 
             />
 
+            <x-fab::forms.checkbox
+                id="should_index"
+                label="Should be indexed"
+                wire:model="category.indexable"
+                help="If checked this will allow search engines (i.e. Google or Bing) to index the category so it can be found when searching on said search engine."
+            />
+
         </x-fab::layouts.panel>
 
         @include('lego::metafields.define', ['metafieldable' => $category])

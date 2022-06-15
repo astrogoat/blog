@@ -18,6 +18,7 @@ class CategoryForm extends Form
         return [
             'category.name' => 'required',
             'category.description' => 'nullable',
+            'category.indexable' => 'nullable',
             'category.slug' => [new SlugRule($this->category)],
             'category.layout' => 'nullable',
             'category.footer_id' => 'nullable',
@@ -62,6 +63,11 @@ class CategoryForm extends Form
     public function getModel(): Model
     {
         return $this->category;
+    }
+
+    public function articles()
+    {
+        return $this->category->articles()->paginate(8);
     }
 
     public function footers()

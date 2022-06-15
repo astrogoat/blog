@@ -59,6 +59,13 @@
                 help="Only numbers. For user to be able to click a phone number on their device."
             />
 
+            <x-fab::forms.checkbox
+                id="should_index"
+                label="Should be indexed"
+                wire:model="article.indexable"
+                help="If checked this will allow search engines (i.e. Google or Bing) to index the page so it can be found when searching on said search engine."
+            />
+
         </x-fab::layouts.panel>
 
         <x-fab::layouts.panel>
@@ -74,6 +81,7 @@
                     <option value="{{ $id }}">{{ $category }}</option>
                 @endforeach
             </x-fab::forms.select>
+
 
         </x-fab::layouts.panel>
 

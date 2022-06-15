@@ -24,6 +24,7 @@ class ArticleForm extends Form
             'article.title' => 'required',
             'article.author' => 'required',
             'article.category_id' => 'nullable',
+            'article.indexable' => 'nullable',
             'article.slug' => [new SlugRule($this->article)],
             'article.layout' => 'nullable',
             'article.footer_id' => 'nullable',
@@ -79,6 +80,11 @@ class ArticleForm extends Form
     public function categories()
     {
         return Category::all()->pluck('name', 'id');
+    }
+
+    public function category()
+    {
+        return $this->article->category;
     }
 
     public function getPublishableModel(): Publishable
