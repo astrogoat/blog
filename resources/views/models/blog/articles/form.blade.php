@@ -56,7 +56,6 @@
             <x-fab::forms.input
                 label="Author"
                 wire:model="article.author"
-                help="Only numbers. For user to be able to click a phone number on their device."
             />
 
             <x-fab::forms.checkbox
