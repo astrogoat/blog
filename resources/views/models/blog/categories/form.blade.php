@@ -73,7 +73,6 @@
                     help="The base layout for the page."
                 >
                     <option disabled>-- Select layout</option>
-                    <option value="">Default</option>
                     @foreach(siteLayouts() as $key => $layout)
                         <option value="{{ $key }}">{{ $layout }}</option>
                     @endforeach
