@@ -32,6 +32,13 @@ class ArticleForm extends Form
         ];
     }
 
+    public function mounted()
+    {
+        if (! $this->article->exists) {
+            $this->article->indexable = true;
+        }
+    }
+
     public function saved()
     {
         if ($this->article->wasRecentlyCreated) {
