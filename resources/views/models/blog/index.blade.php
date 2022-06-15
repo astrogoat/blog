@@ -8,7 +8,6 @@
     <x-fab::layouts.page
         title="Blog Overview"
     >
-
         <div class="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <x-fab::layouts.panel>
                 <div class="flex items-center">
@@ -62,9 +61,6 @@
                     </a>
                 </x-slot>
             </x-fab::layouts.panel>
-
-
         </div>
-
     </x-fab::layouts.page>
 @endsection
