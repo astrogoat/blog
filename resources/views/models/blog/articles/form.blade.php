@@ -4,7 +4,7 @@
         @if($article->exists)
             <x-fab::elements.button
                 type="link"
-                :url="url('') . '/' . Route::getRoutes()->getByName('blog.articles.show')->getPrefix() . '/' . $article->slug"
+                :url="route('blog.articles.show', $article)"
                 target="_blank"
                 class="mb-4 mr-2"
             >
