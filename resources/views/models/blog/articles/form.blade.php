@@ -4,7 +4,7 @@
         @if($article->exists)
             <x-fab::elements.button
                 type="link"
-                :url="url('') . '/' . Route::getRoutes()->getByName('blog.articles.show')->getPrefix() . '/' . $article->slug"
+                :url="route('blog.articles.show', $article)"
                 target="_blank"
                 class="mb-4 mr-2"
             >
@@ -56,7 +56,6 @@
             <x-fab::forms.input
                 label="Author"
                 wire:model="article.author"
-                help="Only numbers. For user to be able to click a phone number on their device."
             />
 
             <x-fab::forms.checkbox
@@ -65,37 +64,29 @@
                 wire:model="article.indexable"
                 help="If checked this will allow search engines (i.e. Google or Bing) to index the page so it can be found when searching on said search engine."
             />
-
         </x-fab::layouts.panel>
 
         <x-fab::layouts.panel>
-
             <x-fab::forms.select
                 wire:model="article.category_id"
                 label="Category"
-                help="Choose a category for this article."
+                help="Choose a category for this article. Or <a href='{{ route('lego.blog.categories.create') }}' target='_blank'>create a new category</a>."
             >
                 <option disabled>-- Select category</option>
-                <option value="">New category</option>
                 @foreach($this->categories() as $id => $category)
                     <option value="{{ $id }}">{{ $category }}</option>
                 @endforeach
             </x-fab::forms.select>
-
-
         </x-fab::layouts.panel>
 
         <x-slot name="aside">
-
             <x-fab::layouts.panel heading="Structure" class="mb-4">
-
                 <x-fab::forms.select
                     wire:model="article.layout"
                     label="Layout"
                     help="The base layout for the page."
                 >
                     <option disabled>-- Select layout</option>
-                    <option value="">Default</option>
                     @foreach(siteLayouts() as $key => $layout)
                         <option value="{{ $key }}">{{ $layout }}</option>
                     @endforeach

@@ -4,7 +4,7 @@
         @if($category->exists)
             <x-fab::elements.button
                 type="link"
-                :url="url('') . '/' . Route::getRoutes()->getByName('blog.categories.show')->getPrefix() . '/' . $category->slug"
+                :url="url(Route::getRoutes()->getByName('blog.categories.show')->getPrefix() . '/' . $category->slug)"
                 target="_blank"
                 class="mb-4 mr-2"
             >
@@ -73,7 +73,6 @@
                     help="The base layout for the page."
                 >
                     <option disabled>-- Select layout</option>
-                    <option value="">Default</option>
                     @foreach(siteLayouts() as $key => $layout)
                         <option value="{{ $key }}">{{ $layout }}</option>
                     @endforeach

@@ -26,10 +26,18 @@ class ArticleForm extends Form
             'article.category_id' => 'nullable',
             'article.indexable' => 'nullable',
             'article.slug' => [new SlugRule($this->article)],
-            'article.layout' => 'nullable',
+            'article.layout' => 'required',
             'article.footer_id' => 'nullable',
             'article.published_at' => 'nullable',
         ];
+    }
+
+    public function mounted()
+    {
+        if (! $this->article->exists) {
+            $this->article->indexable = true;
+            $this->article->layout = array_key_first(siteLayouts());
+        }
     }
 
     public function saved()
