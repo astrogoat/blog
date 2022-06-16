@@ -3,6 +3,8 @@
 namespace Astrogoat\Blog\Models;
 
 use Helix\Fabrick\Icon;
+use Helix\Lego\Media\HasMedia;
+use Helix\Lego\Media\Mediable;
 use Helix\Lego\Models\Contracts\Indexable;
 use Helix\Lego\Models\Contracts\Metafieldable;
 use Helix\Lego\Models\Contracts\Publishable;
@@ -15,12 +17,13 @@ use Helix\Lego\Models\Traits\HasSections;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Article extends LegoModel implements Sectionable, Indexable, Publishable, Searchable, Metafieldable
+class Article extends LegoModel implements Sectionable, Indexable, Publishable, Searchable, Metafieldable, Mediable
 {
     use CanBePublished;
     use HasSections;
     use HasSlug;
     use HasMetafields;
+    use HasMedia;
 
     protected $table = 'blog_articles';
 

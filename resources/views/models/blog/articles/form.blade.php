@@ -112,6 +112,8 @@
                 </x-fab::forms.select>
             </x-fab::layouts.panel>
 
+            <x-lego::media-panel :model="$article" />
+
             @if($article->exists)
                 <x-fab::layouts.panel>
                     <x-fab::elements.button
