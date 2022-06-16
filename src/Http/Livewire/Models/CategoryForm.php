@@ -20,9 +20,17 @@ class CategoryForm extends Form
             'category.description' => 'nullable',
             'category.indexable' => 'nullable',
             'category.slug' => [new SlugRule($this->category)],
-            'category.layout' => 'nullable',
+            'category.layout' => 'required',
             'category.footer_id' => 'nullable',
         ];
+    }
+
+    public function mounted()
+    {
+        if (! $this->category->exists) {
+            $this->category->indexable = true;
+            $this->category->layout = array_key_first(siteLayouts());
+        }
     }
 
     public function saved()

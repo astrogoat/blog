@@ -30,6 +30,4 @@ Route::group([
         Route::get('/{category}/edit', [CategoriesController::class, 'edit'])->name('edit');
         Route::get('/{category}/editor/{editor_view?}', [CategoriesController::class, 'editor'])->name('editor');
     });
-
-
 });

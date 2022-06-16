@@ -33,7 +33,7 @@ class BlogServiceProvider extends PackageServiceProvider
                     Menu::MAIN_SECTIONS['PRIMARY'],
                     Link::to(route('lego.blog.index'), 'Blog')
                         ->after('Pages')
-                        ->icon(Icon::LOCATION_MARKER)
+                        ->icon(Icon::BOOK_OPEN)
                 );
             })
             ->publishOnInstall([
