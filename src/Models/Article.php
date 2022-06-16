@@ -5,6 +5,7 @@ namespace Astrogoat\Blog\Models;
 use Helix\Fabrick\Icon;
 use Helix\Lego\Media\HasMedia;
 use Helix\Lego\Media\Mediable;
+use Helix\Lego\Media\MediaCollection;
 use Helix\Lego\Models\Contracts\Indexable;
 use Helix\Lego\Models\Contracts\Metafieldable;
 use Helix\Lego\Models\Contracts\Publishable;
@@ -112,5 +113,17 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function getMedia() : array
+    {
+        return $this->featured_image ?: [];
+    }
+
+    public function mediaCollections() : array
+    {
+        return [
+            MediaCollection::name('Featured')->maxFiles(1),
+        ];
     }
 }
