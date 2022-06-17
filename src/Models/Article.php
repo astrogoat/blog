@@ -3,6 +3,9 @@
 namespace Astrogoat\Blog\Models;
 
 use Helix\Fabrick\Icon;
+use Helix\Lego\Media\HasMedia;
+use Helix\Lego\Media\Mediable;
+use Helix\Lego\Media\MediaCollection;
 use Helix\Lego\Models\Contracts\Indexable;
 use Helix\Lego\Models\Contracts\Metafieldable;
 use Helix\Lego\Models\Contracts\Publishable;
@@ -15,12 +18,13 @@ use Helix\Lego\Models\Traits\HasSections;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Article extends LegoModel implements Sectionable, Indexable, Publishable, Searchable, Metafieldable
+class Article extends LegoModel implements Sectionable, Indexable, Publishable, Searchable, Metafieldable, Mediable
 {
     use CanBePublished;
     use HasSections;
     use HasSlug;
     use HasMetafields;
+    use HasMedia;
 
     protected $table = 'blog_articles';
 
@@ -109,5 +113,12 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function mediaCollections(): array
+    {
+        return [
+            MediaCollection::name('Featured')->maxFiles(1),
+        ];
     }
 }

@@ -91,6 +91,16 @@
 
             @if($category->exists)
                 <x-fab::layouts.panel>
+                    <x-lego::media-panel :model="$category" />
+                </x-fab::layouts.panel>
+            @else
+                <x-fab::layouts.panel>
+                    <p class="text-sm text-blue">You have to save the article before you can add an image to it.</p>
+                </x-fab::layouts.panel>
+            @endif
+
+            @if($category->exists)
+                <x-fab::layouts.panel class="mt-4">
                     <x-fab::elements.button
                         wire:click="delete"
                         class="text-red-500"
