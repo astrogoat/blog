@@ -90,13 +90,11 @@
             </x-fab::layouts.panel>
 
             @if($category->exists)
-                <x-fab::layouts.panel>
-                    <x-lego::media-panel :model="$category" />
-                </x-fab::layouts.panel>
+                <x-lego::media-panel :model="$category" />
             @else
-                <x-fab::layouts.panel>
-                    <p class="text-sm text-blue">You have to save the article before you can add an image to it.</p>
-                </x-fab::layouts.panel>
+                <x-fab::feedback.alert type="info">
+                    Please save the category before you can attach media to it.
+                </x-fab::feedback.alert>
             @endif
 
             @if($category->exists)
