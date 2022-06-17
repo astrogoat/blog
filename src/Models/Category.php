@@ -101,12 +101,6 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
     {
         return $this->hasMany(Article::class, 'category_id');
     }
-
-    public function getMedia(): array
-    {
-        return $this->featured_image ?: [];
-    }
-
     public function mediaCollections(): array
     {
         return [
