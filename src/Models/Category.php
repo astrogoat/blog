@@ -24,7 +24,7 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
     use HasSlug;
     use HasMetafields;
     use HasMedia;
-    use HasFoter;
+    use HasFooter;
 
     protected $table = 'blog_categories';
 
