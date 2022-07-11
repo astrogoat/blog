@@ -17,6 +17,7 @@ use Helix\Lego\Models\Traits\HasMetafields;
 use Helix\Lego\Models\Traits\HasSections;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Helix\Lego\Models\Traits\HasFooter;
 
 class Article extends LegoModel implements Sectionable, Indexable, Publishable, Searchable, Metafieldable, Mediable
 {
@@ -25,6 +26,7 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
     use HasSlug;
     use HasMetafields;
     use HasMedia;
+    use HasFooter;
 
     protected $table = 'blog_articles';
 

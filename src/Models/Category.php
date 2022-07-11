@@ -15,6 +15,8 @@ use Helix\Lego\Models\Traits\HasMetafields;
 use Helix\Lego\Models\Traits\HasSections;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Helix\Lego\Models\Traits\HasFooter;
+
 
 class Category extends LegoModel implements Sectionable, Indexable, Searchable, Metafieldable, Mediable
 {
@@ -22,6 +24,7 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
     use HasSlug;
     use HasMetafields;
     use HasMedia;
+    use HasFoter;
 
     protected $table = 'blog_categories';
 
