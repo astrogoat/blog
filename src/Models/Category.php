@@ -28,10 +28,12 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
 
     protected $table = 'blog_categories';
 
+
     public static function icon(): string
     {
         return Icon::COLLECTION;
     }
+
 
     public function editorShowViewRoute(string $layout = null): string
     {
