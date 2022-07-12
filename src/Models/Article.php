@@ -13,6 +13,7 @@ use Helix\Lego\Models\Contracts\Searchable;
 use Helix\Lego\Models\Contracts\Sectionable;
 use Helix\Lego\Models\Model as LegoModel;
 use Helix\Lego\Models\Traits\CanBePublished;
+use Helix\Lego\Models\Traits\HasFooter;
 use Helix\Lego\Models\Traits\HasMetafields;
 use Helix\Lego\Models\Traits\HasSections;
 use Spatie\Sluggable\HasSlug;
@@ -25,6 +26,7 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
     use HasSlug;
     use HasMetafields;
     use HasMedia;
+    use HasFooter;
 
     protected $table = 'blog_articles';
 

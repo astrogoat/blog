@@ -11,6 +11,7 @@ use Helix\Lego\Models\Contracts\Metafieldable;
 use Helix\Lego\Models\Contracts\Searchable;
 use Helix\Lego\Models\Contracts\Sectionable;
 use Helix\Lego\Models\Model as LegoModel;
+use Helix\Lego\Models\Traits\HasFooter;
 use Helix\Lego\Models\Traits\HasMetafields;
 use Helix\Lego\Models\Traits\HasSections;
 use Spatie\Sluggable\HasSlug;
@@ -22,6 +23,7 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
     use HasSlug;
     use HasMetafields;
     use HasMedia;
+    use HasFooter;
 
     protected $table = 'blog_categories';
 
