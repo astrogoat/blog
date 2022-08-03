@@ -7,6 +7,7 @@
         title="Groups"
         :breadcrumbs="[
             ['title' => 'Home', 'url' => '/admin'],
+            ['title' => 'Blog', 'url' => route('lego.blog.index')],
             ['title' => 'Groups'],
         ]"
     >

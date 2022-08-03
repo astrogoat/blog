@@ -2,6 +2,7 @@
     :title="$group->title ?: 'Untitled'"
     :breadcrumbs="[
             ['title' => 'Home', 'url' => route('lego.dashboard')],
+            ['title' => 'Blog', 'url' => route('lego.blog.index')],
             ['title' => 'Groups', 'url' => route('lego.blog.groups.index')],
             ['title' => $group->title ?: 'Untitled'],
         ]"
