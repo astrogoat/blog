@@ -3,6 +3,7 @@
 use Astrogoat\Blog\Http\Controllers\ArticlesController;
 use Astrogoat\Blog\Http\Controllers\CategoriesController;
 use Astrogoat\Blog\Http\Controllers\BlogController;
+use Astrogoat\Blog\Http\Controllers\GroupsController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -29,5 +30,14 @@ Route::group([
         Route::get('/create', [CategoriesController::class, 'create'])->name('create');
         Route::get('/{category}/edit', [CategoriesController::class, 'edit'])->name('edit');
         Route::get('/{category}/editor/{editor_view?}', [CategoriesController::class, 'editor'])->name('editor');
+    });
+
+    Route::group([
+        'as' => 'groups.',
+        'prefix' => 'groups/'
+    ], function () {
+        Route::get('/', [GroupsController::class, 'index'])->name('index');
+        Route::get('/create', [GroupsController::class, 'create'])->name('create');
+        Route::get('/{group}/edit', [GroupsController::class, 'edit'])->name('edit');
     });
 });
