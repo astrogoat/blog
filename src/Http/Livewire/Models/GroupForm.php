@@ -75,7 +75,7 @@ class GroupForm extends Form
     public function unselectArticle($articleId)
     {
         $this->selectedArticlesIds = array_filter($this->selectedArticlesIds, fn ($id) => $id !== $articleId);
-        $this->selectedArticles = $this->selectedArticles->reject(fn ($product) => $product->id === $articleId);
+        $this->selectedArticles = $this->selectedArticles->reject(fn ($article) => $article->id === $articleId);
         $this->emitTo('fab.forms.combobox', 'updateItems', $this->getArticlesForGroupCombobox());
         $this->markAsDirty();
     }
