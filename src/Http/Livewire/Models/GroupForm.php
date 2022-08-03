@@ -14,10 +14,6 @@ class GroupForm extends Form
     public Collection $selectedArticles;
     public array $selectedArticlesIds = [];
 
-    protected $listeners = [
-        'updateProductsOrder',
-    ];
-
     public function rules()
     {
         return [
@@ -34,7 +30,7 @@ class GroupForm extends Form
     public function saving()
     {
         $this->group->articles()->sync(
-            $this->selectedArticles->mapWithKeys(fn ($product, $index) => [$product->id => ['order' => $index]])
+            $this->selectedArticles->mapWithKeys(fn ($article, $index) => [$article->id => ['order' => $index]])
         );
     }
 
