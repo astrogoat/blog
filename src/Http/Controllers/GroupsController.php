@@ -2,7 +2,6 @@
 
 namespace Astrogoat\Blog\Http\Controllers;
 
-use Astrogoat\Blog\Models\Category;
 use Astrogoat\Blog\Models\Group;
 use Illuminate\Routing\Controller;
 
