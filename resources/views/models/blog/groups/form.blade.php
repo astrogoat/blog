@@ -93,7 +93,7 @@
                             type="solid"
                             class="-ml-1 mr-2 h-5 w-5 text-red-500"
                         />
-                        Delete Category
+                        Delete Group
                     </x-fab::elements.button>
                 </x-fab::layouts.panel>
             @endif
