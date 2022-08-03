@@ -5,6 +5,5 @@
 @endpush
 
 @section('content')
-
     <livewire:astrogoat.blog.groups-form :group="$group"/>
 @endsection
