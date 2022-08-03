@@ -41,7 +41,7 @@
                 >
                     @foreach($this->selectedArticles as $article)
                         <div
-                            x-sortable.products.item="{{ $article->id }}"
+                            x-sortable.articles.item="{{ $article->id }}"
                         >
                             <x-fab::lists.stacked.grouped-with-actions
                                 :title="$article->title"
@@ -49,8 +49,8 @@
                             >
                                 <x-slot name="avatar">
                                     <div class="flex">
-                                        <x-fab::elements.icon icon="dots-vertical" x-sortable.products.handle class="sh-h-5 sh-w-5 sh-text-gray-300 sh--mr-2" />
-                                        <x-fab::elements.icon icon="dots-vertical" x-sortable.products.handle class="sh-h-5 sh-w-5 sh-text-gray-300 sh--ml-1.5" />
+                                        <x-fab::elements.icon icon="dots-vertical" x-sortable.articles.handle class="sh-h-5 sh-w-5 sh-text-gray-300 sh--mr-2" />
+                                        <x-fab::elements.icon icon="dots-vertical" x-sortable.articles.handle class="sh-h-5 sh-w-5 sh-text-gray-300 sh--ml-1.5" />
                                     </div>
                                 </x-slot>
                                 <x-slot name="actions">
