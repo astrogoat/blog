@@ -72,7 +72,7 @@
                 label="Category"
                 help="Choose a category for this article. Or <a href='{{ route('lego.blog.categories.create') }}' target='_blank'>create a new category</a>."
             >
-                <option disabled>-- Select category</option>
+                <option value="">-- Select category</option>
                 @foreach($this->categories() as $id => $category)
                     <option value="{{ $id }}">{{ $category }}</option>
                 @endforeach
