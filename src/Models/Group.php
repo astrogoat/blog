@@ -3,8 +3,8 @@
 namespace Astrogoat\Blog\Models;
 
 use Helix\Fabrick\Icon;
-use Helix\Lego\Models\Model as LegoModel;
 use Helix\Lego\Models\Contracts\Sectionable;
+use Helix\Lego\Models\Model as LegoModel;
 use Helix\Lego\Models\Traits\HasSections;
 
 class Group extends LegoModel implements Sectionable
@@ -36,5 +36,4 @@ class Group extends LegoModel implements Sectionable
     {
         return $this->belongsToMany(Article::class, 'article_groups_and_article');
     }
-
 }

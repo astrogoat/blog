@@ -5,9 +5,8 @@ namespace Astrogoat\Blog\Http\Livewire\Models;
 use Astrogoat\Blog\Models\Article;
 use Astrogoat\Blog\Models\Group;
 use Helix\Lego\Http\Livewire\Models\Form;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use Helix\Lego\Models\Model;
+use Illuminate\Support\Collection;
 
 class GroupForm extends Form
 {
@@ -56,7 +55,7 @@ class GroupForm extends Form
         parent::updated($property, $value);
     }
 
-    protected function getArticlesForGroupCombobox() : array
+    protected function getArticlesForGroupCombobox(): array
     {
         return Article::all()->map(fn (Article $article) => [
             'key' => $article->id,
