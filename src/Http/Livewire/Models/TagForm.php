@@ -55,7 +55,7 @@ class TagForm extends Form
         parent::updated($property, $value);
     }
 
-    protected function getArticlesForGroupCombobox(): array
+    protected function getArticlesForTagCombobox(): array
     {
         return Article::all()->map(fn (Article $article) => [
             'key' => $article->id,
@@ -75,7 +75,7 @@ class TagForm extends Form
     {
         $this->selectedArticlesIds = array_filter($this->selectedArticlesIds, fn ($id) => $id !== $articleId);
         $this->selectedArticles = $this->selectedArticles->reject(fn ($article) => $article->id === $articleId);
-        $this->emitTo('fab.forms.combobox', 'updateItems', $this->getArticlesForGroupCombobox());
+        $this->emitTo('fab.forms.combobox', 'updateItems', $this->getArticlesForTagCombobox());
         $this->markAsDirty();
     }
 
