@@ -93,7 +93,7 @@
                         </div>
                     </div>
                     <x-slot name="footer">
-                        <a href="{{ route('lego.blog.tags.edit', tag) }}"
+                        <a href="{{ route('lego.blog.tags.edit', $tag) }}"
                            class="flex items-center justify-end text-sm text-gray-600">Edit
                             <x-fab::elements.icon icon="arrow-narrow-right" class="ml-2 h-5 w-5 text-gray-400"/>
                         </a>
