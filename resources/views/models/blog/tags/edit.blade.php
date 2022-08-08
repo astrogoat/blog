@@ -5,5 +5,5 @@
 @endpush
 
 @section('content')
-    <livewire:astrogoat.blog.groups-form :group="$group"/>
+    <livewire:astrogoat.blog.tags-form :tag="$tag"/>
 @endsection

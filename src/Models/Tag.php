@@ -7,11 +7,11 @@ use Helix\Lego\Models\Contracts\Sectionable;
 use Helix\Lego\Models\Model as LegoModel;
 use Helix\Lego\Models\Traits\HasSections;
 
-class Group extends LegoModel implements Sectionable
+class Tag extends LegoModel implements Sectionable
 {
     use HasSections;
 
-    protected $table = 'article_groups';
+    protected $table = 'article_tags';
 
     public static function icon(): string
     {
@@ -20,8 +20,8 @@ class Group extends LegoModel implements Sectionable
 
     public function editorShowViewRoute(string $layout = null): string
     {
-//        return route('lego.blog.group.editor', [
-//            'group' => $this,
+//        return route('lego.blog.tag.editor', [
+//            'tag' => $this,
 //            'editor_view' => 'show',
 //            'layout' => $layout,
 //        ]);
@@ -34,6 +34,6 @@ class Group extends LegoModel implements Sectionable
 
     public function articles()
     {
-        return $this->belongsToMany(Article::class, 'article_groups_and_article');
+        return $this->belongsToMany(Article::class, 'article_tags_and_article');
     }
 }

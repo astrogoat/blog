@@ -3,7 +3,7 @@
 use Astrogoat\Blog\Http\Controllers\ArticlesController;
 use Astrogoat\Blog\Http\Controllers\CategoriesController;
 use Astrogoat\Blog\Http\Controllers\BlogController;
-use Astrogoat\Blog\Http\Controllers\GroupsController;
+use Astrogoat\Blog\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -33,11 +33,11 @@ Route::group([
     });
 
     Route::group([
-        'as' => 'groups.',
-        'prefix' => 'groups/'
+        'as' => 'tags.',
+        'prefix' => 'tags/'
     ], function () {
-        Route::get('/', [GroupsController::class, 'index'])->name('index');
-        Route::get('/create', [GroupsController::class, 'create'])->name('create');
-        Route::get('/{group}/edit', [GroupsController::class, 'edit'])->name('edit');
+        Route::get('/', [TagsController::class, 'index'])->name('index');
+        Route::get('/create', [TagsController::class, 'create'])->name('create');
+        Route::get('/{tag}/edit', [TagsController::class, 'edit'])->name('edit');
     });
 });

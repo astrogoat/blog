@@ -1,10 +1,10 @@
 <x-fab::layouts.page
-    :title="$group->title ?: 'Untitled'"
+    :title="$tag->title ?: 'Untitled'"
     :breadcrumbs="[
             ['title' => 'Home', 'url' => route('lego.dashboard')],
             ['title' => 'Blog', 'url' => route('lego.blog.index')],
-            ['title' => 'Groups', 'url' => route('lego.blog.groups.index')],
-            ['title' => $group->title ?: 'Untitled'],
+            ['title' => 'Tags', 'url' => route('lego.blog.tags.index')],
+            ['title' => $tag->title ?: 'Untitled'],
         ]"
     x-data=""
     x-on:keydown.meta.s.window.prevent="$wire.call('save')" {{-- For Mac --}}
@@ -16,28 +16,28 @@
         <x-fab::layouts.panel>
             <x-fab::forms.input
                 label="Title"
-                wire:model="group.title"
+                wire:model="tag.title"
             />
 
         </x-fab::layouts.panel>
 
         <x-fab::layouts.panel
             title="Articles"
-            description="Link articles to this group"
+            description="Link articles to this tag"
             class="sh-mt-4"
             allow-overflow
             x-on:fab-added="$wire.call('selectArticle', $event.detail[1].key)"
             x-on:fab-removed="$wire.call('unselectArticle', $event.detail[1].key)"
         >
 
-            @if($group->exists)
+            @if($tag->exists)
                 <x-fab::forms.combobox
-                    :items="$this->getArticlesForGroupCombobox()"
+                    :items="$this->getArticlesForTagCombobox()"
                 ></x-fab::forms.combobox>
 
                 <x-fab::lists.stacked
                     x-sortable="updateArticlesOrder"
-                    x-sortable.group="articles"
+                    x-sortable.tag="articles"
                 >
                     @foreach($this->selectedArticles as $article)
                         <div
@@ -75,14 +75,14 @@
                 </x-fab::lists.stacked>
             @else
                 <x-fab::feedback.alert type="info">
-                    Please save the group before you can attach articles to it.
+                    Please save the tag before you can attach articles to it.
                 </x-fab::feedback.alert>
             @endif
 
         </x-fab::layouts.panel>
         <x-slot name="aside">
 
-            @if($group->exists)
+            @if($tag->exists)
                 <x-fab::layouts.panel class="">
                     <x-fab::elements.button
                         wire:click="delete"
@@ -93,7 +93,7 @@
                             type="solid"
                             class="-ml-1 mr-2 h-5 w-5 text-red-500"
                         />
-                        Delete Group
+                        Delete Tag
                     </x-fab::elements.button>
                 </x-fab::layouts.panel>
             @endif

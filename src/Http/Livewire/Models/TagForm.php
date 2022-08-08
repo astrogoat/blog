@@ -3,41 +3,45 @@
 namespace Astrogoat\Blog\Http\Livewire\Models;
 
 use Astrogoat\Blog\Models\Article;
-use Astrogoat\Blog\Models\Group;
+use Astrogoat\Blog\Models\Tag;
 use Helix\Lego\Http\Livewire\Models\Form;
 use Helix\Lego\Models\Model;
 use Illuminate\Support\Collection;
 
-class GroupForm extends Form
+class TagForm extends Form
 {
-    public Group $group;
+    public Tag $tag;
     public Collection $selectedArticles;
     public array $selectedArticlesIds = [];
+
+//    protected $listeners = [
+//        'updateArticlesOrder',
+//    ];
 
     public function rules()
     {
         return [
-            'group.title' => 'required',
+            'tag.title' => 'required',
         ];
     }
 
     public function mounted()
     {
-        $this->selectedArticles = $this->group->articles;
+        $this->selectedArticles = $this->tag->articles;
         $this->selectedArticlesIds = $this->selectedArticles->map(fn ($article) => $article->id)->toArray();
     }
 
     public function saving()
     {
-        $this->group->articles()->sync(
+        $this->tag->articles()->sync(
             $this->selectedArticles->mapWithKeys(fn ($article, $index) => [$article->id => ['order' => $index]])
         );
     }
 
     public function saved()
     {
-        if ($this->group->wasRecentlyCreated) {
-            return redirect()->to(route('lego.blog.groups.edit', $this->group));
+        if ($this->tag->wasRecentlyCreated) {
+            return redirect()->to(route('lego.blog.tags.edit', $this->tag));
         }
     }
 
@@ -91,7 +95,7 @@ class GroupForm extends Form
 
     public function deleting()
     {
-        $this->group->delete();
+        $this->tag->delete();
     }
 
     public function deleted()
@@ -101,11 +105,11 @@ class GroupForm extends Form
 
     public function render()
     {
-        return view('blog::models.blog.groups.form');
+        return view('blog::models.blog.tags.form');
     }
 
     public function getModel(): Model
     {
-        return $this->group;
+        return $this->tag;
     }
 }
