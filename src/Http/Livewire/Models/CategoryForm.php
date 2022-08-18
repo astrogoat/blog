@@ -4,12 +4,12 @@ namespace Astrogoat\Blog\Http\Livewire\Models;
 
 use Astrogoat\Blog\Models\Category;
 use Helix\Lego\Http\Livewire\Models\Form;
+use Helix\Lego\Http\Livewire\Traits\CanBePublished;
+use Helix\Lego\Models\Contracts\Publishable;
 use Helix\Lego\Models\Footer;
 use Helix\Lego\Models\Model;
 use Helix\Lego\Rules\SlugRule;
 use Illuminate\Support\Str;
-use Helix\Lego\Http\Livewire\Traits\CanBePublished;
-use Helix\Lego\Models\Contracts\Publishable;
 
 class CategoryForm extends Form
 {
