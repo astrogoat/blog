@@ -30,6 +30,10 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
 
     protected $table = 'blog_articles';
 
+    protected $dates = [
+        'published_at',
+    ];
+
     public static function icon(): string
     {
         return Icon::DOCUMENT_TEXT;
