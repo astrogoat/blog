@@ -14,10 +14,6 @@ class TagForm extends Form
     public Collection $selectedArticles;
     public array $selectedArticlesIds = [];
 
-//    protected $listeners = [
-//        'updateArticlesOrder',
-//    ];
-
     public function rules()
     {
         return [

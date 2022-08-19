@@ -20,11 +20,7 @@ class Tag extends LegoModel implements Sectionable
 
     public function editorShowViewRoute(string $layout = null): string
     {
-//        return route('lego.blog.tag.editor', [
-//            'tag' => $this,
-//            'editor_view' => 'show',
-//            'layout' => $layout,
-//        ]);
+        // unused
     }
 
     public static function getDisplayKeyName(): string
