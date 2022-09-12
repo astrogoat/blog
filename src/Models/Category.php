@@ -8,24 +8,31 @@ use Helix\Lego\Media\Mediable;
 use Helix\Lego\Media\MediaCollection;
 use Helix\Lego\Models\Contracts\Indexable;
 use Helix\Lego\Models\Contracts\Metafieldable;
+use Helix\Lego\Models\Contracts\Publishable;
 use Helix\Lego\Models\Contracts\Searchable;
 use Helix\Lego\Models\Contracts\Sectionable;
 use Helix\Lego\Models\Model as LegoModel;
+use Helix\Lego\Models\Traits\CanBePublished;
 use Helix\Lego\Models\Traits\HasFooter;
 use Helix\Lego\Models\Traits\HasMetafields;
 use Helix\Lego\Models\Traits\HasSections;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Category extends LegoModel implements Sectionable, Indexable, Searchable, Metafieldable, Mediable
+class Category extends LegoModel implements Sectionable, Indexable, Searchable, Metafieldable, Mediable, Publishable
 {
     use HasSections;
     use HasSlug;
     use HasMetafields;
     use HasMedia;
     use HasFooter;
+    use CanBePublished;
 
     protected $table = 'blog_categories';
+
+    protected $dates = [
+        'published_at',
+    ];
 
     public static function icon(): string
     {

@@ -4,6 +4,8 @@ namespace Astrogoat\Blog\Http\Livewire\Models;
 
 use Astrogoat\Blog\Models\Category;
 use Helix\Lego\Http\Livewire\Models\Form;
+use Helix\Lego\Http\Livewire\Traits\CanBePublished;
+use Helix\Lego\Models\Contracts\Publishable;
 use Helix\Lego\Models\Footer;
 use Helix\Lego\Models\Model;
 use Helix\Lego\Rules\SlugRule;
@@ -11,6 +13,8 @@ use Illuminate\Support\Str;
 
 class CategoryForm extends Form
 {
+    use CanBePublished;
+
     public Category $category;
 
     public function rules()
@@ -22,6 +26,7 @@ class CategoryForm extends Form
             'category.slug' => [new SlugRule($this->category)],
             'category.layout' => 'required',
             'category.footer_id' => 'nullable',
+            'category.published_at' => 'nullable',
         ];
     }
 
@@ -81,5 +86,10 @@ class CategoryForm extends Form
     public function footers()
     {
         return Footer::all()->pluck('title', 'id');
+    }
+
+    public function getPublishableModel(): Publishable
+    {
+        return $this->category;
     }
 }
