@@ -3,17 +3,16 @@
 namespace Astrogoat\Blog\Http\Livewire\Models;
 
 use Astrogoat\Blog\Models\Article;
-use Helix\Lego\Models\Page;
 use Helix\Lego\Http\Livewire\Models\Index;
 
 class ArticleIndex extends Index
 {
-    public function model() : string
+    public function model(): string
     {
         return Article::class;
     }
 
-    public function columns() : array
+    public function columns(): array
     {
         return [
             'title' => 'Title',
@@ -23,7 +22,7 @@ class ArticleIndex extends Index
         ];
     }
 
-    public function mainSearchColumn() : string|false
+    public function mainSearchColumn(): string|false
     {
         return 'title';
     }
