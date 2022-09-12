@@ -1,5 +1,15 @@
-<div x-data>
-
+<x-fab::layouts.page
+        title="{{ $article->title ?: 'Untitled' }}"
+        :breadcrumbs="[
+            ['title' => 'Home', 'url' => route('lego.dashboard')],
+            ['title' => 'Blog', 'url' => route('lego.blog.index')],
+            ['title' => 'Articles', 'url' => route('lego.blog.articles.index')],
+            ['title' => $article->title ?: 'New Article' ],
+        ]"
+        x-data=""
+        x-on:keydown.meta.s.window.prevent="$wire.call('save')" {{-- For Mac --}}
+        x-on:keydown.ctrl.s.window.prevent="$wire.call('save')" {{-- For PC  --}}
+    >
     <x-slot name="actions">
         @if($article->exists)
             <x-fab::elements.button
@@ -132,5 +142,4 @@
     @push('styles')
         <link href="{{ asset('vendor/blog/css/blog.css') }}" rel="stylesheet">
     @endpush
-</div>
-
+</x-fab::layouts.page>
