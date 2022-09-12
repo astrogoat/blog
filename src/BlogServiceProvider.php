@@ -3,6 +3,7 @@
 namespace Astrogoat\Blog;
 
 use Astrogoat\Blog\Http\Livewire\Models\ArticleForm;
+use Astrogoat\Blog\Http\Livewire\Models\ArticleIndex;
 use Astrogoat\Blog\Http\Livewire\Models\CategoryForm;
 use Astrogoat\Blog\Http\Livewire\Models\TagForm;
 use Astrogoat\Blog\Http\Livewire\Overlays\BrowseArticles;
@@ -79,5 +80,6 @@ class BlogServiceProvider extends PackageServiceProvider
         Livewire::component('astrogoat.blog.categories-form', CategoryForm::class);
         Livewire::component('astrogoat.blog.tags-form', TagForm::class);
         Livewire::component('astrogoat.blog.browse-articles', BrowseArticles::class);
+        Livewire::component('astrogoat.blog.http.livewire.models.article-index', ArticleIndex::class);
     }
 }
