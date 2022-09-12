@@ -12,6 +12,7 @@ use Astrogoat\Blog\Settings\BlogSettings;
 use Helix\Fabrick\Icon;
 use Helix\Lego\Apps\App;
 use Helix\Lego\LegoManager;
+use Helix\Lego\Menus\Lego\Group;
 use Helix\Lego\Menus\Lego\Link;
 use Helix\Lego\Menus\Menu;
 use Livewire\Livewire;
@@ -32,9 +33,15 @@ class BlogServiceProvider extends PackageServiceProvider
             ->menu(function (Menu $menu) {
                 $menu->addToSection(
                     Menu::MAIN_SECTIONS['PRIMARY'],
-                    Link::to(route('lego.blog.index'), 'Blog')
-                        ->after('Pages')
-                        ->icon(Icon::BOOK_OPEN)
+                    Group::add(
+                        'Blog',
+                        [
+                            Link::to(route('lego.blog.articles.index'), 'Articles'),
+                            Link::to(route('lego.blog.categories.index'), 'Categories'),
+                            Link::to(route('lego.blog.tags.index'), 'Tags'),
+                        ],
+                        Icon::BOOK_OPEN,
+                    )->after('Pages'),
                 );
             })
             ->publishOnInstall([
