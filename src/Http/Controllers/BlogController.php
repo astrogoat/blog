@@ -4,6 +4,7 @@ namespace Astrogoat\Blog\Http\Controllers;
 
 use Astrogoat\Blog\Models\Article;
 use Astrogoat\Blog\Models\Category;
+use Astrogoat\Blog\Models\Tag;
 use Illuminate\Routing\Controller;
 
 class BlogController extends Controller
@@ -12,7 +13,8 @@ class BlogController extends Controller
     {
         $categoriesCount = Category::count();
         $articlesCount = Article::count();
+        $tags = Tag::all();
 
-        return view('blog::models.blog.index', compact('categoriesCount', 'articlesCount'));
+        return view('blog::models.blog.index', compact('categoriesCount', 'articlesCount', 'tags'));
     }
 }

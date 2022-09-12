@@ -7,13 +7,6 @@ use Illuminate\Routing\Controller;
 
 class ArticlesController extends Controller
 {
-    public function index()
-    {
-        $articles = Article::paginate(20);
-
-        return view('blog::models.blog.articles.index', compact('articles'));
-    }
-
     public function show(Article $article)
     {
         $article->load('sections');
