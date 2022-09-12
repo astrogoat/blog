@@ -1,3 +1,7 @@
+@push('styles')
+    <link href="{{ asset('vendor/blog/css/blog.css') }}" rel="stylesheet">
+@endpush
+
 <x-fab::layouts.page
         title="{{ $category->name ?: 'Untitled' }}"
         :breadcrumbs="[
@@ -11,37 +15,36 @@
         x-on:keydown.ctrl.s.window.prevent="$wire.call('save')" {{-- For PC  --}}
     >
     <x-slot name="actions">
-        @if($category->exists)
-            <x-fab::elements.button
-                type="link"
-                :url="url(Route::getRoutes()->getByName('blog.categories.show')->getPrefix() . '/' . $category->slug)"
-                target="_blank"
-                class="mb-4 mr-2"
-            >
-                <x-fab::elements.icon
-                    icon="eye"
-                    type="solid"
-                    class="-ml-1 mr-2 h-5 w-5"
-                />
-                View
-            </x-fab::elements.button>
+        <div class="blog-flex blog-gap-2">
+            @if($category->exists)
+                <x-fab::elements.button
+                    type="link"
+                    :url="url(Route::getRoutes()->getByName('blog.categories.show')->getPrefix() . '/' . $category->slug)"
+                    target="_blank"
+                >
+                    <x-fab::elements.icon
+                        icon="eye"
+                        type="solid"
+                        class="blog--ml-1 blog-mr-2 blog-h-5 blog-w-5"
+                    />
+                    View
+                </x-fab::elements.button>
 
-            <x-fab::elements.button
-                type="link"
-                :url="route('lego.blog.categories.editor', $category)"
-                class="mb-4"
-            >
-                <x-fab::elements.icon
-                    icon="adjustments"
-                    type="solid"
-                    class="-ml-1 mr-2 h-5 w-5"
-                />
-                Customize
-            </x-fab::elements.button>
-        @endif
+                <x-fab::elements.button
+                    type="link"
+                    :url="route('lego.blog.categories.editor', $category)"
+                >
+                    <x-fab::elements.icon
+                        icon="adjustments"
+                        type="solid"
+                        class="blog--ml-1 blog-mr-2 blog-h-5 blog-w-5"
+                    />
+                    Customize
+                </x-fab::elements.button>
+            @endif
 
-        @include('lego::models._includes.published-state-select')
-
+            @include('lego::models._includes.published-state-select')
+        </div>
     </x-slot>
 
     <x-fab::layouts.main-with-aside>
@@ -114,12 +117,12 @@
                 <x-fab::layouts.panel class="mt-4">
                     <x-fab::elements.button
                         wire:click="delete"
-                        class="text-red-500"
+                        class="blog-text-red-500"
                     >
                         <x-fab::elements.icon
                             icon="trash"
                             type="solid"
-                            class="-ml-1 mr-2 h-5 w-5 text-red-500"
+                            class="blog--ml-1 blog-mr-2 blog-h-5 w-5 blog-text-red-500"
                         />
                         Delete Category
                     </x-fab::elements.button>
@@ -128,7 +131,4 @@
         </x-slot>
 
     </x-fab::layouts.main-with-aside>
-    @push('styles')
-        <link href="{{ asset('vendor/blog/css/blog.css') }}" rel="stylesheet">
-    @endpush
 </x-fab::layouts.page>

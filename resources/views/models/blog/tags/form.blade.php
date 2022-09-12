@@ -10,7 +10,7 @@
     x-on:keydown.meta.s.window.prevent="$wire.call('save')" {{-- For Mac --}}
     x-on:keydown.ctrl.s.window.prevent="$wire.call('save')" {{-- For PC  --}}
 >
-    <x-lego::feedback.errors class="sh-mb-4" />
+    <x-lego::feedback.errors class="blog-mb-4" />
 
     <x-fab::layouts.main-with-aside>
         <x-fab::layouts.panel>
@@ -24,7 +24,7 @@
         <x-fab::layouts.panel
             title="Articles"
             description="Link articles to this tag"
-            class="sh-mt-4"
+            class="blog-mt-4"
             allow-overflow
             x-on:fab-added="$wire.call('selectArticle', $event.detail[1].key)"
             x-on:fab-removed="$wire.call('unselectArticle', $event.detail[1].key)"
@@ -49,8 +49,8 @@
                             >
                                 <x-slot name="avatar">
                                     <div class="flex">
-                                        <x-fab::elements.icon icon="dots-vertical" x-sortable.articles.handle class="sh-h-5 sh-w-5 sh-text-gray-300 sh--mr-2" />
-                                        <x-fab::elements.icon icon="dots-vertical" x-sortable.articles.handle class="sh-h-5 sh-w-5 sh-text-gray-300 sh--ml-1.5" />
+                                        <x-fab::elements.icon icon="dots-vertical" x-sortable.articles.handle class="blog-h-5 blog-w-5 blog-text-gray-300 blog--mr-2" />
+                                        <x-fab::elements.icon icon="dots-vertical" x-sortable.articles.handle class="blog-h-5 blog-w-5 blog-text-gray-300 blog--ml-1.5" />
                                     </div>
                                 </x-slot>
                                 <x-slot name="actions">

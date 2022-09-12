@@ -1,3 +1,7 @@
+@push('styles')
+    <link href="{{ asset('vendor/blog/css/blog.css') }}" rel="stylesheet">
+@endpush
+
 <x-fab::layouts.page
         title="{{ $article->title ?: 'Untitled' }}"
         :breadcrumbs="[
@@ -16,12 +20,12 @@
                 type="link"
                 :url="route('blog.articles.show', $article)"
                 target="_blank"
-                class="mb-4 mr-2"
+                class="blog-mb-4 blog-mr-2"
             >
                 <x-fab::elements.icon
                     icon="eye"
                     type="solid"
-                    class="-ml-1 mr-2 h-5 w-5"
+                    class="blog--ml-1 blog-mr-2 blog-h-5 blog-w-5"
                 />
                 View
             </x-fab::elements.button>
@@ -29,12 +33,12 @@
             <x-fab::elements.button
                 type="link"
                 :url="route('lego.blog.articles.editor', $article)"
-                class="mb-4"
+                class="blog-mb-4"
             >
                 <x-fab::elements.icon
                     icon="adjustments"
                     type="solid"
-                    class="-ml-1 mr-2 h-5 w-5"
+                    class="blog--ml-1 blog-mr-2 blog-h-5 blog-w-5"
                 />
                 Customize
             </x-fab::elements.button>
@@ -125,12 +129,12 @@
                 <x-fab::layouts.panel class="mt-4">
                     <x-fab::elements.button
                         wire:click="delete"
-                        class="text-red-500"
+                        class="blog-text-red-500"
                     >
                         <x-fab::elements.icon
                             icon="trash"
                             type="solid"
-                            class="-ml-1 mr-2 h-5 w-5 text-red-500"
+                            class="blog--ml-1 blog-mr-2 blog-h-5 blog-w-5 blog-text-red-500"
                         />
                         Delete Article
                     </x-fab::elements.button>
@@ -139,7 +143,4 @@
         </x-slot>
 
     </x-fab::layouts.main-with-aside>
-    @push('styles')
-        <link href="{{ asset('vendor/blog/css/blog.css') }}" rel="stylesheet">
-    @endpush
 </x-fab::layouts.page>

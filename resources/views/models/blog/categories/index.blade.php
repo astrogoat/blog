@@ -14,7 +14,8 @@
         ]"
     >
         <x-slot name="actions">
-            <x-fab::elements.button type="link" :url="route('lego.blog.categories.create')">Create
+            <x-fab::elements.button type="link" :url="route('lego.blog.categories.create')">
+                Create
             </x-fab::elements.button>
         </x-slot>
 
@@ -43,7 +44,7 @@
             @endforeach
         </x-fab::lists.table>
 
-        <div class="pt-6">
+        <div class="blog-pt-6">
             {{ $categories->links() }}
         </div>
     </x-fab::layouts.page>
