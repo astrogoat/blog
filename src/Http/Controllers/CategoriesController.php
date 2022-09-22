@@ -7,13 +7,6 @@ use Illuminate\Routing\Controller;
 
 class CategoriesController extends Controller
 {
-    public function index()
-    {
-        $categories = Category::paginate(20);
-
-        return view('blog::models.blog.categories.index', compact('categories'));
-    }
-
     public function show(Category $category)
     {
         $category->load('sections');

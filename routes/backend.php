@@ -5,6 +5,7 @@ use Astrogoat\Blog\Http\Controllers\CategoriesController;
 use Astrogoat\Blog\Http\Controllers\BlogController;
 use Astrogoat\Blog\Http\Controllers\TagsController;
 use Astrogoat\Blog\Http\Livewire\Models\ArticleIndex;
+use Astrogoat\Blog\Http\Livewire\Models\CategoryIndex;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -27,7 +28,7 @@ Route::group([
         'as' => 'categories.',
         'prefix' => 'categories/'
     ], function () {
-        Route::get('/', [CategoriesController::class, 'index'])->name('index');
+        Route::get('/', CategoryIndex::class)->name('index');
         Route::get('/create', [CategoriesController::class, 'create'])->name('create');
         Route::get('/{category}/edit', [CategoriesController::class, 'edit'])->name('edit');
         Route::get('/{category}/editor/{editor_view?}', [CategoriesController::class, 'editor'])->name('editor');
