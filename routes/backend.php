@@ -6,6 +6,7 @@ use Astrogoat\Blog\Http\Controllers\BlogController;
 use Astrogoat\Blog\Http\Controllers\TagsController;
 use Astrogoat\Blog\Http\Livewire\Models\ArticleIndex;
 use Astrogoat\Blog\Http\Livewire\Models\CategoryIndex;
+use Astrogoat\Blog\Http\Livewire\Models\TagIndex;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -38,7 +39,7 @@ Route::group([
         'as' => 'tags.',
         'prefix' => 'tags/'
     ], function () {
-        Route::get('/', [TagsController::class, 'index'])->name('index');
+        Route::get('/', TagIndex::class)->name('index');
         Route::get('/create', [TagsController::class, 'create'])->name('create');
         Route::get('/{tag}/edit', [TagsController::class, 'edit'])->name('edit');
     });

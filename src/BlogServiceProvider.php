@@ -7,6 +7,7 @@ use Astrogoat\Blog\Http\Livewire\Models\ArticleIndex;
 use Astrogoat\Blog\Http\Livewire\Models\CategoryForm;
 use Astrogoat\Blog\Http\Livewire\Models\CategoryIndex;
 use Astrogoat\Blog\Http\Livewire\Models\TagForm;
+use Astrogoat\Blog\Http\Livewire\Models\TagIndex;
 use Astrogoat\Blog\Http\Livewire\Overlays\BrowseArticles;
 use Astrogoat\Blog\Models\Article;
 use Astrogoat\Blog\Models\Category;
@@ -83,5 +84,6 @@ class BlogServiceProvider extends PackageServiceProvider
         Livewire::component('astrogoat.blog.browse-articles', BrowseArticles::class);
         Livewire::component('astrogoat.blog.http.livewire.models.article-index', ArticleIndex::class);
         Livewire::component('astrogoat.blog.http.livewire.models.category-index', CategoryIndex::class);
+        Livewire::component('astrogoat.blog.http.livewire.models.tag-index', TagIndex::class);
     }
 }
