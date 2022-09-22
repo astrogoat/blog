@@ -4,6 +4,7 @@ use Astrogoat\Blog\Http\Controllers\ArticlesController;
 use Astrogoat\Blog\Http\Controllers\CategoriesController;
 use Astrogoat\Blog\Http\Controllers\BlogController;
 use Astrogoat\Blog\Http\Controllers\TagsController;
+use Astrogoat\Blog\Http\Livewire\Models\ArticleForm;
 use Astrogoat\Blog\Http\Livewire\Models\ArticleIndex;
 use Astrogoat\Blog\Http\Livewire\Models\CategoryIndex;
 use Astrogoat\Blog\Http\Livewire\Models\TagIndex;
@@ -20,8 +21,8 @@ Route::group([
         'prefix' => 'articles/'
     ], function () {
         Route::get('/', ArticleIndex::class)->name('index');
-        Route::get('/create', [ArticlesController::class, 'create'])->name('create');
-        Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('edit');
+        Route::get('/create', ArticleForm::class)->name('create');
+        Route::get('/{article}/edit', ArticleForm::class)->name('edit');
         Route::get('/{article}/editor/{editor_view?}', [ArticlesController::class, 'editor'])->name('editor');
     });
 

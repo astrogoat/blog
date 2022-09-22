@@ -111,6 +111,16 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
         return 'published_at';
     }
 
+    public function getCreateRoute(array $parameters = []) : string
+    {
+        return route('lego.blog.articles.create', $parameters);
+    }
+
+    public function getEditRoute() : string
+    {
+        return route('lego.blog.articles.edit', $this);
+    }
+
     public function getPublishedRoute(): string
     {
         return route('blog.articles.show', $this);

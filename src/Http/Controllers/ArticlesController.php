@@ -14,16 +14,6 @@ class ArticlesController extends Controller
         return view('lego::sectionables.show', ['sectionable' => $article]);
     }
 
-    public function create()
-    {
-        return view('blog::models.blog.articles.create');
-    }
-
-    public function edit(Article $article)
-    {
-        return view('blog::models.blog.articles.edit', compact('article'));
-    }
-
     public function editor(Article $article, $editorView = 'editor')
     {
         $article->load('sections');
