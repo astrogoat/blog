@@ -7,9 +7,7 @@ use Helix\Lego\Http\Livewire\Models\Form;
 use Helix\Lego\Http\Livewire\Traits\CanBePublished;
 use Helix\Lego\Models\Contracts\Publishable;
 use Helix\Lego\Models\Footer;
-use Helix\Lego\Models\Model;
 use Helix\Lego\Rules\SlugRule;
-use Illuminate\Support\Str;
 
 class CategoryForm extends Form
 {
@@ -52,7 +50,7 @@ class CategoryForm extends Form
         return 'blog::models.blog.categories.form';
     }
 
-    public function model() : string
+    public function model(): string
     {
         return Category::class;
     }

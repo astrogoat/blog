@@ -5,7 +5,6 @@ namespace Astrogoat\Blog\Http\Livewire\Models;
 use Astrogoat\Blog\Models\Article;
 use Astrogoat\Blog\Models\Tag;
 use Helix\Lego\Http\Livewire\Models\Form;
-use Helix\Lego\Models\Model;
 use Illuminate\Support\Collection;
 
 class TagForm extends Form
@@ -97,7 +96,7 @@ class TagForm extends Form
         return 'blog::models.blog.tags.form';
     }
 
-    public function model() : string
+    public function model(): string
     {
         return Tag::class;
     }

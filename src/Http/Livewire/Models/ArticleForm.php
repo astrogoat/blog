@@ -52,7 +52,7 @@ class ArticleForm extends Form
         return 'blog::models.blog.articles.form';
     }
 
-    public function model() : string
+    public function model(): string
     {
         return Article::class;
     }
