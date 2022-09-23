@@ -11,35 +11,7 @@
     x-on:keydown.ctrl.s.window.prevent="$wire.call('save')" {{-- For PC  --}}
 >
     <x-slot name="actions">
-        @if($model->exists)
-            <x-fab::elements.button
-                type="link"
-                :url="route('blog.articles.show', $model)"
-                target="_blank"
-                class="mr-3"
-            >
-                <x-fab::elements.icon
-                    icon="eye"
-                    type="solid"
-                    class="-ml-1 mr-2 h-5 w-5 text-gray-500"
-                />
-                View
-            </x-fab::elements.button>
-            <x-fab::elements.button
-                type="link"
-                :url="route('lego.blog.articles.editor', $model)"
-            >
-                <x-fab::elements.icon
-                    icon="adjustments"
-                    class="h-5 w-5 mr-2 text-gray-500"
-                />
-                Customize
-            </x-fab::elements.button>
-
-            @include('lego::models._includes.replicate-action-select')
-        @endif
-
-        @include('lego::models._includes.published-state-select')
+        @include('lego::models._includes.forms.page-actions')
     </x-slot>
 
     <x-fab::layouts.main-with-aside>
@@ -118,22 +90,6 @@
                 <x-fab::feedback.alert type="info">
                     Please save the article before you can attach media to it.
                 </x-fab::feedback.alert>
-            @endif
-
-            @if($model->exists)
-                <x-fab::layouts.panel class="mt-4">
-                    <x-fab::elements.button
-                        wire:click="delete"
-                        class="blog-text-red-500"
-                    >
-                        <x-fab::elements.icon
-                            icon="trash"
-                            type="solid"
-                            class="blog--ml-1 blog-mr-2 blog-h-5 blog-w-5 blog-text-red-500"
-                        />
-                        Delete Article
-                    </x-fab::elements.button>
-                </x-fab::layouts.panel>
             @endif
         </x-slot>
 

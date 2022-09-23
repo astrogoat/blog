@@ -14,16 +14,6 @@ class CategoriesController extends Controller
         return view('lego::sectionables.show', ['sectionable' => $category]);
     }
 
-    public function create()
-    {
-        return view('blog::models.blog.categories.create');
-    }
-
-    public function edit(Category $category)
-    {
-        return view('blog::models.blog.categories.edit', compact('category'));
-    }
-
     public function editor(Category $category, $editorView = 'editor')
     {
         $category->load('sections');
