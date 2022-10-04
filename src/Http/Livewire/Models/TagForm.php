@@ -5,39 +5,41 @@ namespace Astrogoat\Blog\Http\Livewire\Models;
 use Astrogoat\Blog\Models\Article;
 use Astrogoat\Blog\Models\Tag;
 use Helix\Lego\Http\Livewire\Models\Form;
-use Helix\Lego\Models\Model;
 use Illuminate\Support\Collection;
 
 class TagForm extends Form
 {
-    public Tag $tag;
     public Collection $selectedArticles;
     public array $selectedArticlesIds = [];
+
+    protected bool $canBeViewed = false;
 
     public function rules()
     {
         return [
-            'tag.title' => 'required',
+            'model.title' => 'required',
         ];
     }
 
-    public function mounted()
+    public function mount($tag = null)
     {
-        $this->selectedArticles = $this->tag->articles;
+        $this->setModel($tag);
+
+        $this->selectedArticles = $this->model->articles;
         $this->selectedArticlesIds = $this->selectedArticles->map(fn ($article) => $article->id)->toArray();
     }
 
     public function saving()
     {
-        $this->tag->articles()->sync(
+        $this->model->articles()->sync(
             $this->selectedArticles->mapWithKeys(fn ($article, $index) => [$article->id => ['order' => $index]])
         );
     }
 
     public function saved()
     {
-        if ($this->tag->wasRecentlyCreated) {
-            return redirect()->to(route('lego.blog.tags.edit', $this->tag));
+        if ($this->model->wasRecentlyCreated) {
+            return redirect()->to(route('lego.blog.tags.edit', $this->model));
         }
     }
 
@@ -89,23 +91,13 @@ class TagForm extends Form
         $this->markAsDirty();
     }
 
-    public function deleting()
+    public function view()
     {
-        $this->tag->delete();
+        return 'blog::models.blog.tags.form';
     }
 
-    public function deleted()
+    public function model(): string
     {
-        return redirect()->to(route('lego.blog.index'));
-    }
-
-    public function render()
-    {
-        return view('blog::models.blog.tags.form');
-    }
-
-    public function getModel(): Model
-    {
-        return $this->tag;
+        return Tag::class;
     }
 }

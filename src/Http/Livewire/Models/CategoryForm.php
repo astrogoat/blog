@@ -7,50 +7,32 @@ use Helix\Lego\Http\Livewire\Models\Form;
 use Helix\Lego\Http\Livewire\Traits\CanBePublished;
 use Helix\Lego\Models\Contracts\Publishable;
 use Helix\Lego\Models\Footer;
-use Helix\Lego\Models\Model;
 use Helix\Lego\Rules\SlugRule;
-use Illuminate\Support\Str;
 
 class CategoryForm extends Form
 {
     use CanBePublished;
 
-    public Category $category;
-
     public function rules()
     {
         return [
-            'category.name' => 'required',
-            'category.description' => 'nullable',
-            'category.indexable' => 'nullable',
-            'category.slug' => [new SlugRule($this->category)],
-            'category.layout' => 'required',
-            'category.footer_id' => 'nullable',
-            'category.published_at' => 'nullable',
+            'model.name' => 'required',
+            'model.description' => 'nullable',
+            'model.indexable' => 'nullable',
+            'model.slug' => [new SlugRule($this->model)],
+            'model.layout' => 'required',
+            'model.footer_id' => 'nullable',
+            'model.published_at' => 'nullable',
         ];
     }
 
-    public function mounted()
+    public function mount($category = null)
     {
-        if (! $this->category->exists) {
-            $this->category->indexable = true;
-            $this->category->layout = array_key_first(siteLayouts());
-        }
-    }
+        $this->setModel($category);
 
-    public function saved()
-    {
-        if ($this->category->wasRecentlyCreated) {
-            return redirect()->to(route('lego.blog.categories.edit', $this->category));
-        }
-    }
-
-    public function updating($property, $value)
-    {
-        parent::updating($property, $value);
-
-        if ($property == 'category.name' && ! $this->category->exists) {
-            $this->category->slug = Str::slug($value);
+        if (! $this->model->exists) {
+            $this->model->indexable = true;
+            $this->model->layout = array_key_first(siteLayouts());
         }
     }
 
@@ -58,29 +40,24 @@ class CategoryForm extends Form
     {
         parent::updated($property, $value);
 
-        if ($property == 'category.footer_id' && ! $value) {
-            $this->category->footer_id = null;
+        if ($property == 'model.footer_id' && ! $value) {
+            $this->model->footer_id = null;
         }
     }
 
-    public function deleted()
+    public function view()
     {
-        return redirect()->to(route('lego.blog.categories.index'));
+        return 'blog::models.blog.categories.form';
     }
 
-    public function render()
+    public function model(): string
     {
-        return view('blog::models.blog.categories.form');
-    }
-
-    public function getModel(): Model
-    {
-        return $this->category;
+        return Category::class;
     }
 
     public function articles()
     {
-        return $this->category->articles()->paginate(8);
+        return $this->model->articles()->paginate(8);
     }
 
     public function footers()
@@ -90,6 +67,6 @@ class CategoryForm extends Form
 
     public function getPublishableModel(): Publishable
     {
-        return $this->category;
+        return $this->model;
     }
 }

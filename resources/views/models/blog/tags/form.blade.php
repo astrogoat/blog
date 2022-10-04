@@ -1,22 +1,26 @@
 <x-fab::layouts.page
-    :title="$tag->title ?: 'Untitled'"
+    :title="$model->title ?: 'Untitled'"
     :breadcrumbs="[
             ['title' => 'Home', 'url' => route('lego.dashboard')],
             ['title' => 'Blog', 'url' => route('lego.blog.index')],
             ['title' => 'Tags', 'url' => route('lego.blog.tags.index')],
-            ['title' => $tag->title ?: 'Untitled'],
+            ['title' => $model->title ?: 'Untitled'],
         ]"
     x-data=""
     x-on:keydown.meta.s.window.prevent="$wire.call('save')" {{-- For Mac --}}
     x-on:keydown.ctrl.s.window.prevent="$wire.call('save')" {{-- For PC  --}}
 >
+    <x-slot name="actions">
+        @include('lego::models._includes.forms.page-actions')
+    </x-slot>
+
     <x-lego::feedback.errors class="blog-mb-4" />
 
     <x-fab::layouts.main-with-aside>
         <x-fab::layouts.panel>
             <x-fab::forms.input
                 label="Title"
-                wire:model="tag.title"
+                wire:model="model.title"
             />
 
         </x-fab::layouts.panel>
@@ -30,19 +34,15 @@
             x-on:fab-removed="$wire.call('unselectArticle', $event.detail[1].key)"
         >
 
-            @if($tag->exists)
-                <x-fab::forms.combobox
-                    :items="$this->getArticlesForTagCombobox()"
-                ></x-fab::forms.combobox>
+            @if($model->exists)
+                <x-fab::forms.combobox :items="$this->getArticlesForTagCombobox()" />
 
                 <x-fab::lists.stacked
                     x-sortable="updateArticlesOrder"
                     x-sortable.tag="articles"
                 >
                     @foreach($this->selectedArticles as $article)
-                        <div
-                            x-sortable.articles.item="{{ $article->id }}"
-                        >
+                        <div x-sortable.articles.item="{{ $article->id }}">
                             <x-fab::lists.stacked.grouped-with-actions
                                 :title="$article->title"
                                 :description="$article->title"
@@ -78,26 +78,7 @@
                     Please save the tag before you can attach articles to it.
                 </x-fab::feedback.alert>
             @endif
-
         </x-fab::layouts.panel>
-        <x-slot name="aside">
-
-            @if($tag->exists)
-                <x-fab::layouts.panel class="">
-                    <x-fab::elements.button
-                        wire:click="delete"
-                        class="text-red-500"
-                    >
-                        <x-fab::elements.icon
-                            icon="trash"
-                            type="solid"
-                            class="-ml-1 mr-2 h-5 w-5 text-red-500"
-                        />
-                        Delete Tag
-                    </x-fab::elements.button>
-                </x-fab::layouts.panel>
-            @endif
-        </x-slot>
     </x-fab::layouts.main-with-aside>
 </x-fab::layouts.page>
 

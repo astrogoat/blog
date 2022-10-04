@@ -38,7 +38,7 @@
 
                 @if($this->shouldShowColumn('category'))
                     <x-fab::lists.table.column>
-                        <a href="{{ route('lego.blog.categories.edit', $article->category) }}">{{ $article->category?->name }}</a>
+                        <a href="{{ $article->category ? route('lego.blog.categories.edit', $article->category) : '#' }}">{{ $article->category?->name }}</a>
                     </x-fab::lists.table.column>
                 @endif
 
