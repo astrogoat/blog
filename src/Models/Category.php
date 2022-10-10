@@ -71,6 +71,13 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
         return route('lego.blog.categories.edit', $this);
     }
 
+
+    public function getEditorRoute() : string
+    {
+        return route('lego.blog.categories.editor', $this);
+    }
+
+
     public function shouldIndex(): bool
     {
         return $this->indexable;
