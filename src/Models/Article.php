@@ -128,7 +128,7 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
         ];
     }
 
-    public function canonicalUrl(array $parameters = []) : string
+    public function canonicalUrl(array $parameters = []): string
     {
         return route('blog.articles.show', $this);
     }

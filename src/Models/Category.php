@@ -118,7 +118,7 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
         ];
     }
 
-    public function canonicalUrl(array $parameters = []) : string
+    public function canonicalUrl(array $parameters = []): string
     {
         return route('blog.categories.show', $this);
     }
