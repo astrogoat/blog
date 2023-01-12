@@ -7,28 +7,11 @@ use Illuminate\Routing\Controller;
 
 class ArticlesController extends Controller
 {
-    public function index()
-    {
-        $articles = Article::paginate(20);
-
-        return view('blog::models.blog.articles.index', compact('articles'));
-    }
-
     public function show(Article $article)
     {
         $article->load('sections');
 
         return view('lego::sectionables.show', ['sectionable' => $article]);
-    }
-
-    public function create()
-    {
-        return view('blog::models.blog.articles.create');
-    }
-
-    public function edit(Article $article)
-    {
-        return view('blog::models.blog.articles.edit', compact('article'));
     }
 
     public function editor(Article $article, $editorView = 'editor')

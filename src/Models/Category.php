@@ -61,6 +61,21 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
             ->doNotGenerateSlugsOnUpdate();
     }
 
+    public function getCreateRoute(array $parameters = []): string
+    {
+        return route('lego.blog.categories.create', $parameters);
+    }
+
+    public function getEditRoute(): string
+    {
+        return route('lego.blog.categories.edit', $this);
+    }
+
+    public function getEditorRoute(): string
+    {
+        return route('lego.blog.categories.editor', $this);
+    }
+
     public function shouldIndex(): bool
     {
         return $this->indexable;

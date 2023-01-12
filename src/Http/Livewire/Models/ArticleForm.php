@@ -8,51 +8,33 @@ use Helix\Lego\Http\Livewire\Models\Form;
 use Helix\Lego\Http\Livewire\Traits\CanBePublished;
 use Helix\Lego\Models\Contracts\Publishable;
 use Helix\Lego\Models\Footer;
-use Helix\Lego\Models\Model;
 use Helix\Lego\Rules\SlugRule;
-use Illuminate\Support\Str;
 
 class ArticleForm extends Form
 {
     use CanBePublished;
 
-    public Article $article;
-
     public function rules()
     {
         return [
-            'article.title' => 'required',
-            'article.author' => 'required',
-            'article.category_id' => 'required',
-            'article.indexable' => 'nullable',
-            'article.slug' => [new SlugRule($this->article)],
-            'article.layout' => 'required',
-            'article.footer_id' => 'nullable',
-            'article.published_at' => 'nullable',
+            'model.title' => 'required',
+            'model.author' => 'required',
+            'model.category_id' => 'required',
+            'model.indexable' => 'nullable',
+            'model.slug' => [new SlugRule($this->model)],
+            'model.layout' => 'required',
+            'model.footer_id' => 'nullable',
+            'model.published_at' => 'nullable',
         ];
     }
 
-    public function mounted()
+    public function mount($article = null)
     {
-        if (! $this->article->exists) {
-            $this->article->indexable = true;
-            $this->article->layout = array_key_first(siteLayouts());
-        }
-    }
+        $this->setModel($article);
 
-    public function saved()
-    {
-        if ($this->article->wasRecentlyCreated) {
-            return redirect()->to(route('lego.blog.articles.edit', $this->article));
-        }
-    }
-
-    public function updating($property, $value)
-    {
-        parent::updating($property, $value);
-
-        if ($property == 'article.title' && ! $this->article->exists) {
-            $this->article->slug = Str::slug($value);
+        if (! $this->model->exists) {
+            $this->model->indexable = true;
+            $this->model->layout = array_key_first(siteLayouts());
         }
     }
 
@@ -60,24 +42,19 @@ class ArticleForm extends Form
     {
         parent::updated($property, $value);
 
-        if ($property == 'article.footer_id' && ! $value) {
-            $this->article->footer_id = null;
+        if ($property == 'model.footer_id' && ! $value) {
+            $this->model->footer_id = null;
         }
     }
 
-    public function deleted()
+    public function view()
     {
-        return redirect()->to(route('lego.blog.articles.index'));
+        return 'blog::models.blog.articles.form';
     }
 
-    public function render()
+    public function model(): string
     {
-        return view('blog::models.blog.articles.form');
-    }
-
-    public function getModel(): Model
-    {
-        return $this->article;
+        return Article::class;
     }
 
     public function footers()
@@ -92,11 +69,11 @@ class ArticleForm extends Form
 
     public function category()
     {
-        return $this->article->category;
+        return $this->model->category;
     }
 
     public function getPublishableModel(): Publishable
     {
-        return $this->article;
+        return $this->model;
     }
 }
