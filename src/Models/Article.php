@@ -142,4 +142,9 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
             MediaCollection::name('Featured')->maxFiles(1),
         ];
     }
+
+    public function canonicalUrl(array $parameters = []): string
+    {
+        return route('blog.articles.show', $this);
+    }
 }
