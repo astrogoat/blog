@@ -103,7 +103,8 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
 
     public function scopeGlobalSearch($query, $value)
     {
-        return $query->where('name', 'LIKE', "%{$value}%");
+        return $query->where('name', 'LIKE', "%{$value}%")
+                ->orWhere('slug', 'LIKE', "%{$value}%");
     }
 
     public function searchableName(): string

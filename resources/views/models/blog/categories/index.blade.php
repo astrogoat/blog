@@ -31,6 +31,12 @@
                     </x-fab::lists.table.column>
                 @endif
 
+                @if($this->shouldShowColumn('slug'))
+                    <x-fab::lists.table.column>
+                        <a href="{{ route('lego.blog.categories.edit', $category) }}">{{ $category->slug }}</a>
+                    </x-fab::lists.table.column>
+                @endif
+
                 @if($this->shouldShowColumn('updated_at'))
                     <x-fab::lists.table.column align="right">
                         {{ $category->updated_at->toFormattedDateString() }}
