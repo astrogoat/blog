@@ -71,12 +71,10 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
         return route('lego.blog.categories.edit', $this);
     }
 
-
-    public function getEditorRoute() : string
+    public function getEditorRoute(): string
     {
         return route('lego.blog.categories.editor', $this);
     }
-
 
     public function shouldIndex(): bool
     {
@@ -133,5 +131,10 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
         return [
             MediaCollection::name('Featured')->maxFiles(1),
         ];
+    }
+
+    public function canonicalUrl(array $parameters = []): string
+    {
+        return route('blog.categories.show', $this);
     }
 }
