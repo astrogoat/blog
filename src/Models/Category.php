@@ -101,6 +101,11 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
         return route('lego.blog.categories.index');
     }
 
+    public static function getGlobalSearchableFields() : array
+    {
+        return ['title', 'slug'];
+    }
+
     public function scopeGlobalSearch($query, $value)
     {
         return $query->where('name', 'LIKE', "%{$value}%");
