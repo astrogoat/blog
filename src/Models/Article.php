@@ -86,7 +86,7 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
         return route('lego.blog.articles.index');
     }
 
-    public static function getGlobalSearchableFields() : array
+    public static function getGlobalSearchableFields(): array
     {
         return ['title', 'slug'];
     }
