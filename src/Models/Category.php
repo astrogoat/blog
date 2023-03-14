@@ -103,7 +103,7 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
 
     public static function getGlobalSearchableFields(): array
     {
-        return ['title', 'slug'];
+        return ['name', 'slug'];
     }
 
     public function scopeGlobalSearch($query, $value)
