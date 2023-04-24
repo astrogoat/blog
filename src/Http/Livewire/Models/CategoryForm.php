@@ -74,7 +74,6 @@ class CategoryForm extends Form
         return $this->model;
     }
 
-
     public function updateArticlesOrder($order)
     {
         $this->selectedArticles = $this->selectedArticles
@@ -88,5 +87,4 @@ class CategoryForm extends Form
 
         $this->markAsDirty();
     }
-
 }
