@@ -10,7 +10,6 @@ use Helix\Lego\Models\Footer;
 use Helix\Lego\Rules\SlugRule;
 use Illuminate\Support\Collection;
 
-
 class CategoryForm extends Form
 {
     use CanBePublished;
