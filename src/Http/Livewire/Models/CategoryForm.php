@@ -74,4 +74,20 @@ class CategoryForm extends Form
     {
         return $this->model;
     }
+
+
+    public function updateArticlesOrder($order)
+    {
+        $this->selectedArticles = $this->selectedArticles
+            ->sort(function ($a, $b) use ($order) {
+                $positionA = array_search($a->id, $order);
+                $positionB = array_search($b->id, $order);
+
+                return $positionA - $positionB;
+            })
+            ->values();
+
+        $this->markAsDirty();
+    }
+
 }
