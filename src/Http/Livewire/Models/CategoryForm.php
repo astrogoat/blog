@@ -8,10 +8,14 @@ use Helix\Lego\Http\Livewire\Traits\CanBePublished;
 use Helix\Lego\Models\Contracts\Publishable;
 use Helix\Lego\Models\Footer;
 use Helix\Lego\Rules\SlugRule;
+use Illuminate\Support\Collection;
+
 
 class CategoryForm extends Form
 {
     use CanBePublished;
+
+    public Collection $selectedArticles;
 
     public function rules()
     {
@@ -29,6 +33,7 @@ class CategoryForm extends Form
     public function mount($category = null)
     {
         $this->setModel($category);
+        $this->selectedArticles = $this->model->articles;
 
         if (! $this->model->exists) {
             $this->model->indexable = true;
