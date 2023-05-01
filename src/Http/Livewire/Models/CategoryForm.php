@@ -102,5 +102,4 @@ class CategoryForm extends Form
 
         $this->markAsDirty();
     }
-
 }
