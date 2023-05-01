@@ -7,11 +7,16 @@ use Astrogoat\Blog\Models\Tag;
 use Helix\Lego\Http\Livewire\Models\Form;
 use Illuminate\Support\Collection;
 
+
 class TagForm extends Form
 {
     public Collection $selectedArticles;
     public array $selectedArticlesIds = [];
 
+    protected $listeners = [
+        'updateArticlesOrder',
+    ];
+    
     protected bool $canBeViewed = false;
 
     public function rules()
@@ -79,6 +84,7 @@ class TagForm extends Form
 
     public function updateArticlesOrder($order)
     {
+        dd('kadosh');
         $this->selectedArticles = $this->selectedArticles
             ->sort(function ($a, $b) use ($order) {
                 $positionA = array_search($a->id, $order);

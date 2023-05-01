@@ -15,7 +15,12 @@ class CategoryForm extends Form
     use CanBePublished;
 
     public Collection $selectedArticles;
+    public Collection $initialArticlesOrder;
 
+    protected $listeners = [
+        'updateArticlesOrder',
+    ];
+    
     public function rules()
     {
         return [
@@ -32,8 +37,10 @@ class CategoryForm extends Form
     public function mount($category = null)
     {
         $this->setModel($category);
-        $this->selectedArticles = $this->model->articles;
-
+        $this->selectedArticles = $this->model->articles()->orderBy('order','asc')->get();
+        $this->initialArticlesOrder = $this->selectedArticles->mapWithKeys(fn ($article, $index) => [$article->id => $article->order]);
+        //dd($this->model->articles()->leftJoin('blog_category_blog_article','blog_category_blog_article.article_id','blog_articles.id'));
+        ray($this->selectedArticles,$this->initialArticlesOrder);
         if (! $this->model->exists) {
             $this->model->indexable = true;
             $this->model->layout = array_key_first(siteLayouts());
@@ -59,10 +66,6 @@ class CategoryForm extends Form
         return Category::class;
     }
 
-    public function articles()
-    {
-        return $this->model->articles()->paginate(8);
-    }
 
     public function footers()
     {
@@ -74,6 +77,17 @@ class CategoryForm extends Form
         return $this->model;
     }
 
+
+    public function saving()
+    {
+        $selectedArticlesOrderCollection=$this->selectedArticles->mapWithKeys(fn ($article, $index) => [$article->id => $index]);
+        $articlesThatChangedPosition = $selectedArticlesOrderCollection->diffAssoc($this->initialArticlesOrder);
+
+        foreach($articlesThatChangedPosition as $articleThatChangedPosition){
+            $this->selectedArticles[$articleThatChangedPosition]->order=$articleThatChangedPosition;
+            $this->selectedArticles[$articleThatChangedPosition]->save();
+        }
+    }
 
     public function updateArticlesOrder($order)
     {
