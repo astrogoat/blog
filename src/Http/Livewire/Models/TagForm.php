@@ -7,7 +7,6 @@ use Astrogoat\Blog\Models\Tag;
 use Helix\Lego\Http\Livewire\Models\Form;
 use Illuminate\Support\Collection;
 
-
 class TagForm extends Form
 {
     public Collection $selectedArticles;
@@ -16,7 +15,7 @@ class TagForm extends Form
     protected $listeners = [
         'updateArticlesOrder',
     ];
-    
+
     protected bool $canBeViewed = false;
 
     public function rules()
