@@ -40,7 +40,7 @@ class CategoryForm extends Form
         $this->selectedArticles = $this->model->articles()->orderBy('order','asc')->get();
         $this->initialArticlesOrder = $this->selectedArticles->mapWithKeys(fn ($article, $index) => [$article->id => $article->order]);
         //dd($this->model->articles()->leftJoin('blog_category_blog_article','blog_category_blog_article.article_id','blog_articles.id'));
-        ray($this->selectedArticles,$this->initialArticlesOrder);
+        //ray($this->selectedArticles,$this->initialArticlesOrder);
         if (! $this->model->exists) {
             $this->model->indexable = true;
             $this->model->layout = array_key_first(siteLayouts());
