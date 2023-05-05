@@ -37,11 +37,11 @@ class CategoryForm extends Form
     public function mount($category = null)
     {
         $this->setModel($category);
-        
+
         $this->selectedArticles = $this->model->articles()->orderBy('order', 'asc')->get();
-        
+
         $this->initialArticlesOrder = $this->selectedArticles->mapWithKeys(fn ($article, $index) => [$article->id => $article->order]);
-        
+
         if (! $this->model->exists) {
             $this->model->indexable = true;
             $this->model->layout = array_key_first(siteLayouts());
@@ -81,7 +81,7 @@ class CategoryForm extends Form
     public function saving()
     {
         $selectedArticlesOrderCollection = $this->selectedArticles->mapWithKeys(fn ($article, $index) => [$article->id => $index]);
-        
+
         $articlesThatChangedPosition = $selectedArticlesOrderCollection->diffAssoc($this->initialArticlesOrder);
 
         foreach($articlesThatChangedPosition as $articleThatChangedPosition) {
