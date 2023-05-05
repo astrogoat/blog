@@ -78,7 +78,7 @@
             @endif
         </x-slot>
 
-        <x-fab::layouts.panel title="Articles" description="Link articles to this tag" class="blog-mt-4" allow-overflow>
+        <x-fab::layouts.panel title="Articles" description="Articles linked to this category" class="blog-mt-4" allow-overflow>
 
             @if ($model->exists)
                 <x-fab::lists.stacked x-sortable="updateArticlesOrder" x-sortable.group="articles">
@@ -103,7 +103,7 @@
                 </x-fab::lists.stacked>
             @else
                 <x-fab::feedback.alert type="info">
-                    Please save the tag before you can attach articles to it.
+                    Please attach an article to this category
                 </x-fab::feedback.alert>
             @endif
         </x-fab::layouts.panel>
