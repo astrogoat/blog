@@ -124,9 +124,6 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
     public function articles()
     {
         return $this->hasMany(Article::class, 'category_id');
-        // return $this->belongsToMany(Article::class, 'blog_category_blog_article')
-        //     ->withPivot('order')
-        //     ->orderBy('order');
     }
 
     public function mediaCollections(): array
