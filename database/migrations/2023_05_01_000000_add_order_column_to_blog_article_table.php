@@ -14,7 +14,7 @@ class AddOrderColumnToBlogArticleTable extends Migration
     public function up()
     {
         Schema::table('blog_articles', function (Blueprint $table) {
-            $table->integer('order')->after('slug');
+            $table->integer('order')->nullable()->after('slug');
         });
     }
 
