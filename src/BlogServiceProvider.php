@@ -9,7 +9,6 @@ use Astrogoat\Blog\Http\Livewire\Models\CategoryIndex;
 use Astrogoat\Blog\Http\Livewire\Models\TagForm;
 use Astrogoat\Blog\Http\Livewire\Models\TagIndex;
 use Astrogoat\Blog\Http\Livewire\Overlays\BrowseArticles;
-use Astrogoat\Blog\Http\Livewire\Overlays\BrowseCategories;
 use Astrogoat\Blog\Models\Article;
 use Astrogoat\Blog\Models\Category;
 use Astrogoat\Blog\Settings\BlogSettings;
