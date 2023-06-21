@@ -101,7 +101,6 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
         return route('lego.blog.categories.index');
     }
 
-    
     public function scopeGlobalSearch($query, $value)
     {
         $searchFields = auth()->user()
@@ -111,7 +110,7 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
             ->get('payload')
             ->first()?->payload ?? ['name'];
 
-            
+
         foreach ($searchFields as $searchField) {
             $query->orWhere($searchField, 'LIKE', "%{$value}%");
         }
@@ -119,7 +118,7 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
         return $query;
     }
 
-    public static function searchableFields() : array
+    public static function searchableFields(): array
     {
         return [
             'name' => 'Name',
