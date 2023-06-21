@@ -140,6 +140,11 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'article_tags_and_article');
+    }
+
     public function mediaCollections(): array
     {
         return [
