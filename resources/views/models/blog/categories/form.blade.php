@@ -78,6 +78,36 @@
             @endif
         </x-slot>
 
+        <x-fab::layouts.panel title="Articles" description="Articles linked to this category" class="blog-mt-4" allow-overflow>
+
+            @if ($model->exists)
+                <x-fab::lists.stacked x-sortable="updateArticlesOrder" x-sortable.group="articles">
+                    @foreach ($this->selectedArticles as $article)
+                        <div x-sortable.articles.item="{{ $article->id }}">
+                            <x-fab::lists.stacked.grouped-with-actions class="blog-bg-white" :title="$article->title" :description="$article->type">
+                                <x-slot name="avatar">
+                                    <button class="flex">
+                                        <x-fab::elements.icon icon="dots-vertical" x-sortable.articles.handle class="blog-h-5 blog-w-5 blog-text-gray-300 blog--mr-2" />
+                                        <x-fab::elements.icon icon="dots-vertical" x-sortable.articles.handle class="blog-h-5 blog-w-5 blog-text-gray-300 blog--ml-1.5" />
+                                    </button>
+                                </x-slot>
+                                <x-slot name="actions">
+                                    <x-fab::elements.button size="xs" type="link" :url="route('lego.blog.articles.edit', $article)">
+                                        View
+                                    </x-fab::elements.button>
+
+                                </x-slot>
+                            </x-fab::lists.stacked.grouped-with-actions>
+                        </div>
+                    @endforeach
+                </x-fab::lists.stacked>
+            @else
+                <x-fab::feedback.alert type="info">
+                    Please attach an article to this category
+                </x-fab::feedback.alert>
+            @endif
+        </x-fab::layouts.panel>
+
     </x-fab::layouts.main-with-aside>
 </x-fab::layouts.page>
 

@@ -8,10 +8,18 @@ use Helix\Lego\Http\Livewire\Traits\CanBePublished;
 use Helix\Lego\Models\Contracts\Publishable;
 use Helix\Lego\Models\Footer;
 use Helix\Lego\Rules\SlugRule;
+use Illuminate\Support\Collection;
 
 class CategoryForm extends Form
 {
     use CanBePublished;
+
+    public Collection $selectedArticles;
+    public Collection $initialArticlesOrder;
+
+    protected $listeners = [
+        'updateArticlesOrder',
+    ];
 
     public function rules()
     {
@@ -30,10 +38,15 @@ class CategoryForm extends Form
     {
         $this->setModel($category);
 
+        $this->selectedArticles = $this->model->articles()->orderBy('order', 'asc')->get();
+
+        $this->initialArticlesOrder = $this->selectedArticles->mapWithKeys(fn ($article, $index) => [$article->id => $article->order]);
+
         if (! $this->model->exists) {
             $this->model->indexable = true;
             $this->model->layout = array_key_first(siteLayouts());
         }
+
     }
 
     public function updated($property, $value)
@@ -55,11 +68,6 @@ class CategoryForm extends Form
         return Category::class;
     }
 
-    public function articles()
-    {
-        return $this->model->articles()->paginate(8);
-    }
-
     public function footers()
     {
         return Footer::all()->pluck('title', 'id');
@@ -68,5 +76,31 @@ class CategoryForm extends Form
     public function getPublishableModel(): Publishable
     {
         return $this->model;
+    }
+
+    public function saving()
+    {
+        $selectedArticlesOrderCollection = $this->selectedArticles->mapWithKeys(fn ($article, $index) => [$article->id => $index]);
+
+        $articlesThatChangedPosition = $selectedArticlesOrderCollection->diffAssoc($this->initialArticlesOrder);
+
+        foreach($articlesThatChangedPosition as $articleThatChangedPosition) {
+            $this->selectedArticles[$articleThatChangedPosition]->order = $articleThatChangedPosition;
+            $this->selectedArticles[$articleThatChangedPosition]->save();
+        }
+    }
+
+    public function updateArticlesOrder($order)
+    {
+        $this->selectedArticles = $this->selectedArticles
+            ->sort(function ($a, $b) use ($order) {
+                $positionA = array_search($a->id, $order);
+                $positionB = array_search($b->id, $order);
+
+                return $positionA - $positionB;
+            })
+            ->values();
+
+        $this->markAsDirty();
     }
 }
