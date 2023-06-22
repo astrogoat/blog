@@ -16,6 +16,7 @@ class ArticleIndex extends Index
     {
         return [
             'title' => 'Title',
+            'slug' => 'Slug',
             'category' => 'Category',
             'author' => 'Author',
             'updated_at' => 'Last updated',
