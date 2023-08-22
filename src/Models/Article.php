@@ -88,7 +88,27 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
 
     public function scopeGlobalSearch($query, $value)
     {
-        return $query->where('title', 'LIKE', "%{$value}%");
+        $searchFields = auth()->user()
+            ->preferences()
+            ->where('group', 'global_search')
+            ->where('name', self::class)
+            ->get('payload')
+            ->first()?->payload ?? ['title'];
+
+
+        foreach ($searchFields as $searchField) {
+            $query->orWhere($searchField, 'LIKE', "%{$value}%");
+        }
+
+        return $query;
+    }
+
+    public static function searchableFields(): array
+    {
+        return [
+            'title' => 'Title',
+            'slug' => 'Slug',
+        ];
     }
 
     public function searchableName(): string
