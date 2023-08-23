@@ -18,6 +18,8 @@ use Helix\Lego\Models\Traits\HasMetafields;
 use Helix\Lego\Models\Traits\HasSections;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Illuminate\Support\Arr;
+
 
 class Article extends LegoModel implements Sectionable, Indexable, Publishable, Searchable, Metafieldable, Mediable
 {
@@ -27,6 +29,11 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
     use HasMetafields;
     use HasMedia;
     use HasFooter;
+
+
+    protected $casts = [
+        'meta' => 'json',
+    ];
 
     protected $table = 'blog_articles';
 
@@ -84,6 +91,12 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
     public static function searchableIndexRoute(): string
     {
         return route('lego.blog.articles.index');
+    }
+
+
+    public function getSectionTitleAttribute() : string
+    {
+        return Arr::get($this->meta ?? null, 'article_page_title') ?: $this->title;
     }
 
     public function scopeGlobalSearch($query, $value)
@@ -146,11 +159,7 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
         return route('blog.articles.show', $this);
     }
 
-<<<<<<< HEAD
-    public function getEditorRoute() : string
-=======
     public function getEditorRoute(): string
->>>>>>> 691ae0606fbeb0b4200dc94da024b6ceacdc2b6d
     {
         return route('lego.blog.articles.editor', $this);
     }
