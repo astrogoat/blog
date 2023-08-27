@@ -37,7 +37,7 @@
                 name="model.meta.article_page_title"
                 label="Page Title"
                 wire:model="model.meta.article_page_title"
-                help="The text displayed in the browser tab/window. Will use the product title if left empty."
+                help="The text displayed in the browser tab/window."
             />
 
             <x-fab::forms.textarea
