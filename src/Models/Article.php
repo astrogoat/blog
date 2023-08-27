@@ -16,10 +16,9 @@ use Helix\Lego\Models\Traits\CanBePublished;
 use Helix\Lego\Models\Traits\HasFooter;
 use Helix\Lego\Models\Traits\HasMetafields;
 use Helix\Lego\Models\Traits\HasSections;
+use Illuminate\Support\Arr;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Illuminate\Support\Arr;
-
 
 class Article extends LegoModel implements Sectionable, Indexable, Publishable, Searchable, Metafieldable, Mediable
 {
@@ -93,8 +92,7 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
         return route('lego.blog.articles.index');
     }
 
-
-    public function getSectionTitleAttribute() : string
+    public function getSectionTitleAttribute(): string
     {
         return Arr::get($this->meta ?? null, 'article_page_title') ?: $this->title;
     }

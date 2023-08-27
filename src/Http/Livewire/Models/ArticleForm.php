@@ -14,7 +14,6 @@ class ArticleForm extends Form
 {
     use CanBePublished;
 
-    
     public function rules()
     {
         return [
@@ -74,7 +73,6 @@ class ArticleForm extends Form
     {
         return $this->model->category;
     }
-    
 
     public function getPublishableModel(): Publishable
     {
