@@ -25,6 +25,8 @@ class ArticleForm extends Form
             'model.layout' => 'required',
             'model.footer_id' => 'nullable',
             'model.published_at' => 'nullable',
+            'model.meta.article_page_description' => 'nullable',
+            'model.meta.article_page_title' => 'nullable',
         ];
     }
 
