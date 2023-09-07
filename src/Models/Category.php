@@ -30,8 +30,8 @@ class Category extends LegoModel implements Sectionable, Indexable, Searchable, 
 
     protected $table = 'blog_categories';
 
-    protected $dates = [
-        'published_at',
+    protected $casts = [
+        'published_at' => 'datetime',
     ];
 
     public static function icon(): string
