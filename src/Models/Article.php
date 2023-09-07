@@ -154,11 +154,7 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
         return route('blog.articles.show', $this);
     }
 
-<<<<<<< HEAD
-    public function getEditorRoute() : string
-=======
     public function getEditorRoute(): string
->>>>>>> 691ae0606fbeb0b4200dc94da024b6ceacdc2b6d
     {
         return route('lego.blog.articles.editor', $this);
     }
