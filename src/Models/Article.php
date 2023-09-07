@@ -32,13 +32,10 @@ class Article extends LegoModel implements Sectionable, Indexable, Publishable, 
 
     protected $casts = [
         'meta' => 'json',
+        'published_at' => 'datetime',
     ];
 
     protected $table = 'blog_articles';
-
-    protected $dates = [
-        'published_at',
-    ];
 
     public static function icon(): string
     {
