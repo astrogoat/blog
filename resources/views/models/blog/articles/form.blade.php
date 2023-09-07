@@ -30,6 +30,24 @@
             />
 
         </x-fab::layouts.panel>
+       
+        
+        <x-fab::layouts.panel title="SEO">
+            <x-fab::forms.input
+                name="model.meta.article_page_title"
+                label="Page Title"
+                wire:model="model.meta.article_page_title"
+                help="The text displayed in the browser tab/window."
+            />
+
+            <x-fab::forms.textarea
+                name="model.meta.article_page_description"
+                wire:model="model.meta.article_page_description"
+                label="Description"
+                help="Meta description for search engines like Google and Bing."
+            />
+
+        </x-fab::layouts.panel>
 
         @include('lego::metafields.define', ['metafieldable' => $model])
 
