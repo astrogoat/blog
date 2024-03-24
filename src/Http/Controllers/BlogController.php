@@ -13,7 +13,7 @@ class BlogController extends Controller
     {
         $categoriesCount = Category::count();
         $articlesCount = Article::count();
-        $tags = Tag::all();
+        $tags = Tag::with('articles')->get();
 
         return view('blog::models.blog.index', compact('categoriesCount', 'articlesCount', 'tags'));
     }

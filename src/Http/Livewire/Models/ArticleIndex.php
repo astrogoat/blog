@@ -45,7 +45,7 @@ class ArticleIndex extends Index
     public function render()
     {
         return view('blog::models.blog.articles.index', [
-            'models' => $this->getModels(),
+            'models' => $this->getModels(['with' => 'category']),
         ])->extends('lego::layouts.lego')->section('content');
     }
 }
