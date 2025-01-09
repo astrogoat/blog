@@ -84,7 +84,7 @@ class CategoryForm extends Form
 
         $articlesThatChangedPosition = $selectedArticlesOrderCollection->diffAssoc($this->initialArticlesOrder);
 
-        foreach($articlesThatChangedPosition as $articleThatChangedPosition) {
+        foreach ($articlesThatChangedPosition as $articleThatChangedPosition) {
             $this->selectedArticles[$articleThatChangedPosition]->order = $articleThatChangedPosition;
             $this->selectedArticles[$articleThatChangedPosition]->save();
         }
