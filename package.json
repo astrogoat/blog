@@ -14,7 +14,6 @@
         "prod": "npm run production",
         "production": "mix --production",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "version": "npm run prod && git add -A public",
         "release": "gh workflow run release.yml",
         "release:patch": "gh workflow run release.yml --field level=patch",
         "release:minor": "gh workflow run release.yml --field level=minor",
