@@ -17,7 +17,7 @@
     <x-fab::layouts.main-with-aside>
         <x-fab::layouts.panel>
             <x-fab::forms.input
-                label="Article title"
+                label="Title"
                 wire:model="model.title"
             />
 
@@ -31,42 +31,16 @@
 
         </x-fab::layouts.panel>
 
-        <x-fab::layouts.panel title="SEO">
+        <x-fab::layouts.panel title="Author">
             <x-fab::forms.input
-                name="model.meta.article_page_title"
-                label="Page Title"
-                wire:model="model.meta.article_page_title"
-                help="The text displayed in the browser tab/window."
-            />
-
-            <x-fab::forms.textarea
-                name="model.meta.article_page_description"
-                wire:model="model.meta.article_page_description"
-                label="Description"
-                help="Meta description for search engines like Google and Bing."
-            />
-        </x-fab::layouts.panel>
-
-        @include('lego::metafields.define', ['metafieldable' => $model])
-
-        <x-fab::layouts.panel>
-            <x-fab::forms.input
-                label="Author"
+                label="Name"
                 wire:model="model.author"
             />
-
-            <x-fab::forms.checkbox
-                id="should_index"
-                label="Should be indexed"
-                wire:model="model.indexable"
-                help="If checked this will allow search engines (i.e. Google or Bing) to index the page so it can be found when searching on said search engine."
-            />
         </x-fab::layouts.panel>
 
-        <x-fab::layouts.panel>
+        <x-fab::layouts.panel title="Category">
             <x-fab::forms.select
                 wire:model="model.category_id"
-                label="Category"
                 help="Choose a category for this model. Or <a href='{{ route('lego.blog.categories.create') }}' target='_blank'>create a new category</a>."
             >
                 <option value="">-- Select category</option>
@@ -76,8 +50,10 @@
             </x-fab::forms.select>
         </x-fab::layouts.panel>
 
+        @include('lego::metafields.define', ['metafieldable' => $model])
+
         <x-slot name="aside">
-            <x-fab::layouts.panel heading="Structure" class="mb-4">
+            <x-fab::layouts.panel title="Structure" class="mb-4">
                 <x-fab::forms.select
                     wire:model="model.layout"
                     label="Layout"
@@ -107,8 +83,31 @@
                     Please save the article before you can attach media to it.
                 </x-fab::feedback.alert>
             @endif
-        </x-slot>
 
+            <x-fab::layouts.panel title="SEO">
+                <x-fab::forms.input
+                    name="model.meta.article_page_title"
+                    label="Page Title"
+                    wire:model="model.meta.article_page_title"
+                    help="The text displayed in the browser tab/window."
+                />
+
+                <x-fab::forms.textarea
+                    name="model.meta.article_page_description"
+                    wire:model="model.meta.article_page_description"
+                    label="Description"
+                    help="Meta description for search engines like Google and Bing."
+                />
+
+                <x-fab::forms.checkbox
+                    id="should_index"
+                    label="Should be indexed"
+                    wire:model="model.indexable"
+                    help="If checked this will allow search engines (i.e. Google or Bing) to index the page so it can be found when searching on said search engine."
+                />
+            </x-fab::layouts.panel>
+
+        </x-slot>
     </x-fab::layouts.main-with-aside>
 </x-fab::layouts.page>
 
