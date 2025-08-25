@@ -6,33 +6,29 @@ use Helix\Lego\Bricks\ValueObjects\BrickValueObject;
 
 class ArticleValueObject extends BrickValueObject
 {
-    protected $cache = [];
-
-    public function __construct(protected $value)
-    {
-    }
+    protected array $cache = [];
 
     public function getArticleModel()
     {
-        if (isset($this->cache[$this->value])) {
-            return $this->cache[$this->value];
+        if (isset($this->cache[$this->getValue()])) {
+            return $this->cache[$this->getValue()];
         }
 
-        $this->cache[$this->value] = \Astrogoat\Blog\Models\Article::find($this->value);
+        $this->cache[$this->getValue()] = \Astrogoat\Blog\Models\Article::find($this->getValue());
 
-        return $this->cache[$this->value];
+        return $this->cache[$this->getValue()];
     }
 
     public function getValue()
     {
-        $selectedArticle = \Astrogoat\Blog\Models\Article::find($this->value);
+        $selectedArticle = \Astrogoat\Blog\Models\Article::find(parent::getValue());
 
         return $selectedArticle != null ? $selectedArticle->title : '';
     }
 
     public function forJavascript()
     {
-        return $this->getValue() ?? '';
+        return $this->value ?? '';
     }
 
     public function __toString()
